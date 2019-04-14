@@ -9,6 +9,7 @@ import Business.DB4OUtil.*;
 import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import javax.swing.JPanel;
 /**
  *
  * @author dhava
@@ -26,8 +27,13 @@ public class MainJframe extends javax.swing.JFrame {
     public MainJframe() {
         
         initComponents();
-        
+        system =new DMEcosystem();
         btnlogout.setEnabled(false);
+        btnLogin.setVisible(true);
+        txtUserName.setVisible(true);
+        txtpassword.setVisible(true);
+        jLabel1.setVisible(true);
+        jLabel2.setVisible(true);
         //container = new javax.swing.JPanel();
     }
 
@@ -57,15 +63,20 @@ public class MainJframe extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1200, 900));
 
         jSplitPane1.setBorder(null);
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(150);
         jSplitPane1.setDividerSize(0);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         jPanel2.setBackground(new java.awt.Color(87, 85, 212));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1200, 150));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1200, 100));
 
         btnlogout.setBackground(new java.awt.Color(255, 255, 255));
         btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +92,7 @@ public class MainJframe extends javax.swing.JFrame {
 
         btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
+        btnLogin.setBorderPainted(false);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -92,35 +104,32 @@ public class MainJframe extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(552, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(46, 46, 46))
+                .addContainerGap(103, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLogin)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnlogout)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                    .addComponent(btnLogin)
+                    .addComponent(btnlogout))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jSplitPane1.setTopComponent(jPanel2);
@@ -155,6 +164,29 @@ public class MainJframe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+//        this.validate();
+//        this.revalidate();
+//        this.repaint();
+
+        btnlogout.setEnabled(false);
+        btnLogin.setVisible(true);
+        txtUserName.setVisible(true);
+        txtpassword.setVisible(true);
+        jLabel1.setVisible(true);
+        jLabel2.setVisible(true);
+        jpanel1.removeAll();
+         
+      //  JPanel mj = new JPanel();
+        ReloadMainJpan(jpanel1);
+        jSplitPane1.setDividerLocation(150);
+    }//GEN-LAST:event_btnlogoutActionPerformed
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String UserName =txtUserName.getText();
@@ -164,30 +196,41 @@ public class MainJframe extends javax.swing.JFrame {
             btnlogout.setEnabled(true);
             btnLogin.setEnabled(true);
             btnLogin.setVisible(false);
-          //  jpanel1.setSize(1200, 100);
-          //  jpanel1.setPreferredSize(new Dimension(1200, 100));
-           // jpanel1.setLayout(new java.awt.CardLayout());
-            SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel();
-             jpanel1.add("workArea", jp);
-             CardLayout layout=(CardLayout)jpanel1.getLayout();
-             layout.next(jpanel1);
+            txtUserName.setVisible(false);
+            txtpassword.setVisible(false);
+            jLabel1.setVisible(false);
+            jLabel2.setVisible(false);
+            jpanel1.removeAll();
+            //  jpanel1.setSize(1200, 100);
+            //  jpanel1.setPreferredSize(new Dimension(1200, 100));
+            // jpanel1.setLayout(new java.awt.CardLayout());
+            SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,system);
+            jpanel1.add("workArea", jp);
+            CardLayout layout=(CardLayout)jpanel1.getLayout();
+            layout.next(jpanel1);
 
-            
-// this.setVisible(false);
-           // jp.setVisible(true);
-           
-                
-//jpanel1.add("workArea",jp);
-                
-                       
+            // this.setVisible(false);
+            // jp.setVisible(true);
+
+            //jpanel1.add("workArea",jp);
+
         }
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpasswordActionPerformed
-
+    
+    public void ReloadMainJpan(JPanel jp)
+    {
+      
+        
+        jp.setBackground(new java.awt.Color(255, 255, 255));
+     //   jp.setMinimumSize(new java.awt.Dimension(1800, 1000));
+        jp.setPreferredSize(new java.awt.Dimension(1000, 800));
+        jp.setLayout(new java.awt.CardLayout(40, -50));
+	jp.add(jLabel3, "card2");
+        jSplitPane1.setRightComponent(jp);
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
