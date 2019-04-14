@@ -5,7 +5,10 @@
  */
 package UserInterface.SystemAdminWorkArea;
 
+import Business.DMEcosystem;
+import java.awt.CardLayout;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +19,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SystemAdminWorkAreaJPanel
      */
-    public SystemAdminWorkAreaJPanel() {
+    JPanel mainJpanel;
+    DMEcosystem system;
+    public SystemAdminWorkAreaJPanel(JPanel jp , DMEcosystem system) {
         initComponents();
+        this.mainJpanel=jp;
+        this.system=system;
     }
 
     /**
@@ -30,7 +37,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnManageNetwork = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -41,29 +48,29 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("Welcome System Admin..!!");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 240, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Manage Network");
-        jButton2.addFocusListener(new java.awt.event.FocusAdapter() {
+        btnManageNetwork.setBackground(new java.awt.Color(0, 0, 0));
+        btnManageNetwork.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnManageNetwork.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageNetwork.setText("Manage Network");
+        btnManageNetwork.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jButton2FocusGained(evt);
+                btnManageNetworkFocusGained(evt);
             }
         });
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnManageNetwork.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                btnManageNetworkMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                btnManageNetworkMouseExited(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnManageNetworkActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 290, 180));
+        add(btnManageNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 290, 180));
 
         jButton3.setBackground(new java.awt.Color(61, 99, 210));
         jButton3.setText("Manage Enterprise");
@@ -74,34 +81,38 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 310, 180));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
         // TODO add your handling code here:
+        SystemAdminManageNetwork smn=new SystemAdminManageNetwork(mainJpanel,system);
+        CardLayout cl=(CardLayout)mainJpanel.getLayout();
+        mainJpanel.add("SystemAdminManageNetwork",smn);
+        cl.next(mainJpanel);
        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnManageNetworkActionPerformed
 
-    private void jButton2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton2FocusGained
+    private void btnManageNetworkFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnManageNetworkFocusGained
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton2FocusGained
+    }//GEN-LAST:event_btnManageNetworkFocusGained
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+    private void btnManageNetworkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageNetworkMouseEntered
         // TODO add your handling code here:
-         jButton2.setBackground(Color.blue);
+         btnManageNetwork.setBackground(Color.blue);
         // jButton2.setSize(20,20);
-         jButton2.setForeground(Color.white);
+         btnManageNetwork.setForeground(Color.white);
          
          
          
-    }//GEN-LAST:event_jButton2MouseEntered
+    }//GEN-LAST:event_btnManageNetworkMouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+    private void btnManageNetworkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageNetworkMouseExited
         // TODO add your handling code here:
-        jButton2.setBackground(Color.DARK_GRAY);
-    }//GEN-LAST:event_jButton2MouseExited
+        btnManageNetwork.setBackground(Color.DARK_GRAY);
+    }//GEN-LAST:event_btnManageNetworkMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnManageNetwork;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
