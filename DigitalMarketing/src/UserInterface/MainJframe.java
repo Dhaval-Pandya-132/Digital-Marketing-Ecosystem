@@ -28,6 +28,7 @@ public class MainJframe extends javax.swing.JFrame {
         
         initComponents();
         system =new DMEcosystem();
+        system = dB4OUtil.retrieveSystem();
         btnlogout.setEnabled(false);
         btnLogin.setVisible(true);
         txtUserName.setVisible(true);
@@ -137,7 +138,7 @@ public class MainJframe extends javax.swing.JFrame {
         jpanel1.setBackground(new java.awt.Color(255, 255, 255));
         jpanel1.setMinimumSize(new java.awt.Dimension(1800, 1000));
         jpanel1.setPreferredSize(new java.awt.Dimension(1200, 800));
-        jpanel1.setLayout(new java.awt.CardLayout(40, -100));
+        jpanel1.setLayout(new java.awt.CardLayout(40, -50));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/complete-digital-marketing-bn-1.png"))); // NOI18N
