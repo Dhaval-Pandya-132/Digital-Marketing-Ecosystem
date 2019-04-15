@@ -38,7 +38,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         btnManageNetwork = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnManageEnterprise = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -72,9 +72,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnManageNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 290, 180));
 
-        jButton3.setBackground(new java.awt.Color(61, 99, 210));
-        jButton3.setText("Manage Enterprise");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 290, 180));
+        btnManageEnterprise.setBackground(new java.awt.Color(61, 99, 210));
+        btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEnterpriseActionPerformed(evt);
+            }
+        });
+        add(btnManageEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 290, 180));
 
         jButton4.setBackground(new java.awt.Color(61, 99, 210));
         jButton4.setText("Manage Enterprise Admin");
@@ -110,10 +115,19 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageNetwork.setBackground(Color.DARK_GRAY);
     }//GEN-LAST:event_btnManageNetworkMouseExited
 
+    private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
+        // TODO add your handling code here:
+        ManageEnterpriseDetailsJPanel smn=new ManageEnterpriseDetailsJPanel(mainJpanel,system);
+        CardLayout cl=(CardLayout)mainJpanel.getLayout();
+        mainJpanel.add("ManageEnterpriseDetailsJPanel",smn);
+        cl.next(mainJpanel);
+    
+    }//GEN-LAST:event_btnManageEnterpriseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnManageNetwork;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

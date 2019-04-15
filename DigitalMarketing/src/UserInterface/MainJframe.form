@@ -178,7 +178,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout">
             <Property name="horizontalGap" type="int" value="40"/>
-            <Property name="verticalGap" type="int" value="-100"/>
+            <Property name="verticalGap" type="int" value="-50"/>
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel3">
