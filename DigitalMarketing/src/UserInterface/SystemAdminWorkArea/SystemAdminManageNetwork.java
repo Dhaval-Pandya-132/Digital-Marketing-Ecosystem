@@ -26,6 +26,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
     JPanel mainJpanel;
     Network rn;
     DMEcosystem es;
+    
     public SystemAdminManageNetwork(JPanel jp,DMEcosystem es) {
         initComponents();
         rn=new Network();
@@ -159,17 +160,28 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       
-        if (btnSave.getText().equals("Update"))
-        {
-            btnSave.setText("Save");
-              AddNetwork(true);
-        }
-        else
-        {
-            AddNetwork(false);
-        }
+       if(txtNetworkName.getText().equals("")|| checkElement())
+       {
+           JOptionPane.showMessageDialog(null, "Network Name can not be blank or Duplicate");
+       }
+       else
+       {
+           if (btnSave.getText().equals("Update"))
+            {
+                btnSave.setText("Save");
+                 AddNetwork(true);
+                 JOptionPane.showMessageDialog(null, "Network added Successfully");
+              
+            }
+            else
+            {
+                AddNetwork(false);
+                JOptionPane.showMessageDialog(null, "Network added Successfully");
+
+            }
         
+            txtNetworkName.setText("");
+       }
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -182,6 +194,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
            rn=(Network)tblNetworkList.getValueAt(selectedRow,0);
            txtNetworkName.setText(rn.getName());
            btnSave.setText("Update");
+          
            // resetTextfield();s
             
         }
@@ -192,7 +205,20 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_btnEditActionPerformed
-
+  
+   public boolean checkElement()
+    {
+        Boolean B=false ;
+        for(Network s : es.getNetworkList())
+        {
+           if(s.getName().equals(txtNetworkName.getText())) 
+           {
+               B= true;
+               break;
+           }
+        }
+        return B;
+    }
     public void AddNetwork(Boolean IsUpdate)
     {
         String Name =txtNetworkName.getText();

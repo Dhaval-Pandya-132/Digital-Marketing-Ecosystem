@@ -9,6 +9,7 @@ import Business.DB4OUtil.*;
 import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
  *
@@ -32,7 +33,7 @@ public class MainJframe extends javax.swing.JFrame {
         btnlogout.setEnabled(false);
         btnLogin.setVisible(true);
         txtUserName.setVisible(true);
-        txtpassword.setVisible(true);
+        txtPassword.setVisible(true);
         jLabel1.setVisible(true);
         jLabel2.setVisible(true);
         //container = new javax.swing.JPanel();
@@ -51,7 +52,7 @@ public class MainJframe extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnlogout = new javax.swing.JButton();
         txtUserName = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
@@ -79,12 +80,6 @@ public class MainJframe extends javax.swing.JFrame {
             }
         });
 
-        txtpassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpasswordActionPerformed(evt);
-            }
-        });
-
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("User Name:");
 
@@ -105,14 +100,14 @@ public class MainJframe extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
+                .addContainerGap(104, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -127,9 +122,9 @@ public class MainJframe extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin)
-                    .addComponent(btnlogout))
+                    .addComponent(btnlogout)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
@@ -165,10 +160,6 @@ public class MainJframe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpasswordActionPerformed
-
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
 //        this.validate();
@@ -178,7 +169,7 @@ public class MainJframe extends javax.swing.JFrame {
         btnlogout.setEnabled(false);
         btnLogin.setVisible(true);
         txtUserName.setVisible(true);
-        txtpassword.setVisible(true);
+        txtPassword.setVisible(true);
         jLabel1.setVisible(true);
         jLabel2.setVisible(true);
         jpanel1.removeAll();
@@ -191,14 +182,19 @@ public class MainJframe extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String UserName =txtUserName.getText();
-        String Password =txtpassword.getText();
+        String Password =txtPassword.getText();
+        if(UserName.equals("")||Password.equals("")  )
+            {
+                JOptionPane.showMessageDialog(null,"Username or Password can not be empty");
+                return;
+            }
         if(UserName.equals("Sysadmin") && Password.equals("Sysadmin"))
         {
             btnlogout.setEnabled(true);
             btnLogin.setEnabled(true);
             btnLogin.setVisible(false);
             txtUserName.setVisible(false);
-            txtpassword.setVisible(false);
+            txtPassword.setVisible(false);
             jLabel1.setVisible(false);
             jLabel2.setVisible(false);
             jpanel1.removeAll();
@@ -210,6 +206,10 @@ public class MainJframe extends javax.swing.JFrame {
             CardLayout layout=(CardLayout)jpanel1.getLayout();
             layout.next(jpanel1);
 
+            
+            //to clear the fields after login
+            txtUserName.setText("");
+            txtPassword.setText("");
             // this.setVisible(false);
             // jp.setVisible(true);
 
@@ -277,7 +277,7 @@ public class MainJframe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel jpanel1;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
-    private javax.swing.JTextField txtpassword;
     // End of variables declaration//GEN-END:variables
 }
