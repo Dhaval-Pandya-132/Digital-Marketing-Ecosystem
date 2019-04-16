@@ -242,12 +242,12 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
         ddlNetwork.removeAllItems();
         ddlenterprisetype.removeAllItems();
 
-        for (Network network : es.getNetworkList()) {
-            ddlNetwork.addItem(network.getName());
+      for (Network network : es.getNetworkList()) {
+            ddlNetwork.addItem(network.toString());
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            ddlenterprisetype.addItem(type.getValue());
+            ddlenterprisetype.addItem(type.toString());
         }
 
     }
@@ -256,19 +256,19 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     public void SaveEnterprise()
     {
     
-        Network network = (Network) ddlNetwork.getSelectedItem();
-        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) ddlenterprisetype.getSelectedItem();
+      //  Network network = (Network) ddlNetwork.getSelectedItem();
+       // Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) ddlenterprisetype.getSelectedItem();
 
         String Name =txtName.getText();
         String Path =lblfilepath.getText();
-        String Network =network.getName();
+        String Network = ddlNetwork.getSelectedItem().toString();
         Integer TotalEmployee =Integer.valueOf(txtTotalEmployee.getText());
         
         en.setNoofEmployee(TotalEmployee);
         en.setEnterpriseName(Name);
         en.setAddress(Name);
         en.setCreatedDate(new Date());
-        ed.createAndAddEnterprise(en, type);
+        ed.createAndAddEnterprise(en, ddlenterprisetype.getSelectedItem().toString());
         
     }
     
