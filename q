@@ -1,0 +1,35 @@
+[33mcommit 705025614fe03ae174dd44203c524f637fe319b8[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/Dhaval[m[33m, [m[1;32mPreMaster[m[33m, [m[1;32mDhaval[m[33m)[m
+Author: pandya.dhaval_001356204 <pandya.d@husky.neu.edu>
+Date:   Sun Apr 14 13:46:35 2019 -0400
+
+    Add Manage network jpanel
+
+[33mcommit 5110fe92131b5f2959c7ce2e6a549404095721e9[m
+Merge: 1af0913 276635f
+Author: Dhavalkumar Pandya <pandya.d@husky.neu.edu>
+Date:   Sat Apr 13 23:53:12 2019 +0000
+
+    Merged in PreMaster (pull request #2)
+    
+    Add skeleton of the project
+
+[33mcommit 276635f904223276ed13c278d8c0a8675cd86343[m[33m ([m[1;31morigin/PreMaster[m[33m)[m
+Merge: 1af0913 4e82f1a
+Author: Dhavalkumar Pandya <pandya.d@husky.neu.edu>
+Date:   Sat Apr 13 23:52:23 2019 +0000
+
+    Merged in master (pull request #1)
+    
+    Add skeleton of the project
+
+[33mcommit 4e82f1ac848180ef4d971d92822a118922fc5228[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: pandya.dhaval_001356204 <pandya.d@husky.neu.edu>
+Date:   Sat Apr 13 19:35:06 2019 -0400
+
+    Add skeleton of the project
+
+[33mcommit 1af09134faad9f732e06ef8a727045684338fca2[m
+Author: Dhaval Pandya <pandya.d@husky.neu.edu>
+Date:   Tue Feb 19 19:57:55 2019 +0000
+
+    Initial commit
