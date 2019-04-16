@@ -28,9 +28,9 @@ public class EnterpriseDirectory {
     }
     
     //Create enterprise
-    public Enterprise createAndAddEnterprise(Enterprise E,Enterprise.EnterpriseType type){
+    public Enterprise createAndAddEnterprise(Enterprise E,String type){
     //    Enterprise enterprise=null;
-        if(type==Enterprise.EnterpriseType.Client){
+        if(type=="Client"){
        //     enterprise=new HospitalEnterprise(name);
             enterpriseList.add(E);
         }

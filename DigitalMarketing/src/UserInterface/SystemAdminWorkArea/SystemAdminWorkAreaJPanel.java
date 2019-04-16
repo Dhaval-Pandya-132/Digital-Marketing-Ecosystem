@@ -21,6 +21,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel mainJpanel;
     DMEcosystem system;
+    
     public SystemAdminWorkAreaJPanel(JPanel jp , DMEcosystem system) {
         initComponents();
         this.mainJpanel=jp;

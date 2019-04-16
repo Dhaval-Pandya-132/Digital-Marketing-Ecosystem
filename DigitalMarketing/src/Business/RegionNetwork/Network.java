@@ -30,10 +30,9 @@ public class Network {
         this.Name = Name;
     }
        
-    @Override
-    public String toString()
-    {
-        return this.Name;
+     @Override
+    public String toString(){
+        return Name;
     }
     
 }
