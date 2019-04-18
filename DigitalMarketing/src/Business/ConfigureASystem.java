@@ -6,7 +6,6 @@
 package Business;
 import Business.DMEcosystem;
 import Business.Employee.Employee;
-import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 
 /**
@@ -25,9 +24,9 @@ public class ConfigureASystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
+    //    Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
+     //   UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
         return system;
     }

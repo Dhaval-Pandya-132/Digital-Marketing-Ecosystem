@@ -5,41 +5,27 @@
  */
 package Business;
 
-import Business.Organization.Organization;
 import Business.RegionNetwork.Network;
-import Business.Role.Role;
-import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 
 /**
  *
  * @author dhava
  */
-public class DMEcosystem extends Organization {
+public class DMEcosystem {
    
      private static DMEcosystem business;
-    private ArrayList<Network> networkList;
-    public static DMEcosystem getInstance(){
-        if(business==null){
-            business=new DMEcosystem();
-        }
+       private ArrayList<Network> networkList;
+    public static DMEcosystem getBusiness() {
         return business;
     }
-    
-    public Network createAndAddNetwork(){
-        Network network=new Network();
-        networkList.add(network);
-        return network;
+
+    public DMEcosystem() {
+        networkList =new ArrayList<Network> ();
     }
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList=new ArrayList<Role>();
-        roleList.add(new SystemAdminRole());
-        return roleList;
-    }
-    private DMEcosystem(){
-        super(null);
-        networkList=new ArrayList<Network>();
+
+    public static void setBusiness(DMEcosystem business) {
+        DMEcosystem.business = business;
     }
 
     public ArrayList<Network> getNetworkList() {
@@ -49,16 +35,18 @@ public class DMEcosystem extends Organization {
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
-    
-    public boolean checkIfUserIsUnique(String userName){
-        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
-            return false;
+   
+     public static DMEcosystem getInstance(){
+        if(business==null){
+            business=new DMEcosystem();
         }
-        for(Network network:networkList){
-            
-        }
-        return true;
+        return business;
     }
+   
+     public void addNetwork(Network N)
+     {
+         networkList.add(N);
+     }
      
      
 }
