@@ -26,6 +26,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
     JPanel mainJpanel;
     Network rn;
     DMEcosystem es;
+  //  private JPanel SystemAdminWorkAreaJPanel;
     
     public SystemAdminManageNetwork(JPanel jp,DMEcosystem es) {
         initComponents();
@@ -35,6 +36,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
       //  btnBack.getBorder().paintBorder(jp, g, WIDTH, WIDTH, WIDTH, HEIGHT);
         jScrollPane1.setBorder(BorderFactory.createEmptyBorder());
         this.mainJpanel=jp;
+       // this.SystemAdminWorkAreaJPanel = SAW;
         PopulateTable();
     }
 
@@ -155,7 +157,11 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+       
+       mainJpanel.remove(this);
+       CardLayout layout = (CardLayout) mainJpanel.getLayout();
+        layout.previous(mainJpanel);
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -228,7 +234,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         {
             Network n =new Network();
              n.setName(Name);
-            es.createAndAddNetwork();
+            es.addNetwork(n);
         }
         else 
         {
