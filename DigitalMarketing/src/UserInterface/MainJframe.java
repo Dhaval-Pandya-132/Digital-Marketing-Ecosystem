@@ -6,6 +6,8 @@
 package   UserInterface;
 import Business.DMEcosystem;
 import Business.DB4OUtil.*;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
 import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -24,6 +26,8 @@ public class MainJframe extends javax.swing.JFrame {
     
     private DMEcosystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    EnterpriseDirectory ed;
+    Enterprise en;
    // private javax.swing.JPanel container;  
     
     public MainJframe() {
@@ -31,6 +35,7 @@ public class MainJframe extends javax.swing.JFrame {
         initComponents();
         system =new DMEcosystem();
         system = dB4OUtil.retrieveSystem();
+        ed=new EnterpriseDirectory();
         btnlogout.setEnabled(false);
         btnLogin.setVisible(true);
         txtUserName.setVisible(true);
@@ -202,7 +207,7 @@ public class MainJframe extends javax.swing.JFrame {
             //  jpanel1.setSize(1200, 100);
             //  jpanel1.setPreferredSize(new Dimension(1200, 100));
             // jpanel1.setLayout(new java.awt.CardLayout());
-            SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,system);
+            SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,en,system,ed);
             jpanel1.add("workArea", jp);
             CardLayout layout=(CardLayout)jpanel1.getLayout();
             layout.next(jpanel1);
