@@ -26,12 +26,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     EnterpriseDirectory ed;
     Enterprise en;
     
-    public SystemAdminWorkAreaJPanel(JPanel jp ,  Enterprise en, DMEcosystem system, EnterpriseDirectory ed ) {
+    public SystemAdminWorkAreaJPanel(JPanel jp , DMEcosystem system ) {
         initComponents();
         this.mainJpanel=jp;
         this.system=system;
-        this.en = en;
-        this.ed= ed;
+        //this.en = new Enterprise();
+        this.ed= new EnterpriseDirectory();
         
     }
 
@@ -54,7 +54,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Welcome System Admin..!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 240, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 240, 100));
 
         btnManageNetwork.setBackground(new java.awt.Color(0, 0, 0));
         btnManageNetwork.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

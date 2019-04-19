@@ -38,7 +38,7 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     
     public ManageEnterpriseDetailsJPanel(JPanel jp,DMEcosystem es, EnterpriseDirectory ed) {
         initComponents();
-       en=new Enterprise();
+    //   en=new Enterprise();
        this.ed= ed;
         //this.en = en;
        // this.ed = ed;
@@ -59,8 +59,6 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        ddlNetwork = new javax.swing.JComboBox<>();
-        ddlenterprisetype = new javax.swing.JComboBox<>();
         txtTotalEmployee = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -73,6 +71,8 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaddress = new javax.swing.JTextArea();
         btnBack = new javax.swing.JButton();
+        enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        networkJComboBox = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -91,12 +91,6 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
             }
         });
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 220, 30));
-
-        ddlNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(ddlNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 220, -1));
-
-        ddlenterprisetype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(ddlenterprisetype, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 220, -1));
 
         txtTotalEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +158,17 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 105, 76));
+
+        enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseTypeJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseTypeJComboBoxActionPerformed(evt);
+            }
+        });
+        add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 220, -1));
+
+        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 220, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -241,7 +246,7 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
         
-         if(txtName.getText().equals("")||txtTotalEmployee.getText().equals("")||txtaddress.getText().equals("")||ddlNetwork.getSelectedItem().toString().equals("")||ddlenterprisetype.getSelectedItem().toString().equals(""))
+         if(txtName.getText().equals("")||txtTotalEmployee.getText().equals("")||txtaddress.getText().equals("")||networkJComboBox.getSelectedItem().toString().equals("")||enterpriseTypeJComboBox.getSelectedItem().toString().equals(""))
         {
            JOptionPane.showMessageDialog(null, "One or more fields are empty");
             
@@ -260,18 +265,22 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Enterprise Created successfully..!!");
     }//GEN-LAST:event_btnsaveActionPerformed
 
+    private void enterpriseTypeJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseTypeJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseTypeJComboBoxActionPerformed
+
     
     
     private void populateComboBox() {
-        ddlNetwork.removeAllItems();
-        ddlenterprisetype.removeAllItems();
+        networkJComboBox.removeAllItems();
+        enterpriseTypeJComboBox.removeAllItems();
 
-      for (Network network : es.getNetworkList()) {
-            ddlNetwork.addItem(network.toString());
+      for (Network n : es.getNetworkList()) {
+            networkJComboBox.addItem(n);
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            ddlenterprisetype.addItem(type.toString());
+            enterpriseTypeJComboBox.addItem(type);
         }
 
     }
@@ -285,14 +294,36 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
 
         String Name =txtName.getText();
         String Path =lblfilepath.getText();
-        String Network = ddlNetwork.getSelectedItem().toString();
+        Network Network = (Network)networkJComboBox.getSelectedItem();
         Integer TotalEmployee =Integer.valueOf(txtTotalEmployee.getText());
         
-        en.setNoofEmployee(TotalEmployee);
-        en.setEnterpriseName(Name);
-        en.setAddress(Name);
-        en.setCreatedDate(new Date());
-        ed.createAndAddEnterprise(en, ddlenterprisetype.getSelectedItem().toString());
+//        en.setNoofEmployee(TotalEmployee);
+//        en.setEnterpriseName(Name);
+//        en.setAddress(Name);
+//        en.setCreatedDate(new Date());
+//      //  en.setNetwork(Network);
+//        en.setType( ddlenterprisetype.getSelectedItem().toString());
+//        
+       // Network n = new Network();
+        
+//        for (Network NN: es.getNetworkList())
+//        {
+//                if (NN.getName().equals(Network))
+//                {
+//                    n=NN;
+//                    break;
+//                }
+//        }
+        
+            Enterprise E=Network.getEpd().createAndAddEnterprise(Name, enterpriseTypeJComboBox.getSelectedItem().toString());
+            E.setEnterpriseName(Name);
+            E.setNoofEmployee(TotalEmployee);
+            E.setCreatedDate(new Date());
+            E.setEnterpriseType(Enterprise.EnterpriseType.valueOf(enterpriseTypeJComboBox.getSelectedItem().toString()));
+            E.setAddress(txtaddress.getText());
+
+         
+//ed.createAndAddEnterprise(en, ddlenterprisetype.getSelectedItem().toString());
         
     }
     
@@ -305,8 +336,7 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSelectphoto;
     private javax.swing.JButton btnsave;
-    private javax.swing.JComboBox<String> ddlNetwork;
-    private javax.swing.JComboBox<String> ddlenterprisetype;
+    private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -316,6 +346,7 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblfilepath;
+    private javax.swing.JComboBox networkJComboBox;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtTotalEmployee;
     private javax.swing.JTextArea txtaddress;
