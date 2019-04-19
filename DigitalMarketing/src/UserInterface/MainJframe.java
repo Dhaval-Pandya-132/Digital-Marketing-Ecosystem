@@ -6,6 +6,14 @@
 package   UserInterface;
 import Business.DMEcosystem;
 import Business.DB4OUtil.*;
+<<<<<<< Updated upstream
+=======
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;		
+import Business.UserAccount.UserAccount;
+import Business.Enterprise.EnterpriseDirectory;
+import Business.RegionNetwork.Network;
+>>>>>>> Stashed changes
 import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -23,6 +31,11 @@ public class MainJframe extends javax.swing.JFrame {
     
     private DMEcosystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+<<<<<<< Updated upstream
+=======
+    //EnterpriseDirectory ed;
+    Enterprise en;
+>>>>>>> Stashed changes
    // private javax.swing.JPanel container;  
     
     public MainJframe() {
@@ -30,6 +43,10 @@ public class MainJframe extends javax.swing.JFrame {
         initComponents();
         system =new DMEcosystem();
         system = dB4OUtil.retrieveSystem();
+<<<<<<< Updated upstream
+=======
+     //   ed=new EnterpriseDirectory();
+>>>>>>> Stashed changes
         btnlogout.setEnabled(false);
         btnLogin.setVisible(true);
         txtUserName.setVisible(true);
@@ -52,10 +69,14 @@ public class MainJframe extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnlogout = new javax.swing.JButton();
         txtUserName = new javax.swing.JTextField();
+<<<<<<< Updated upstream
         txtPassword = new javax.swing.JPasswordField();
+=======
+>>>>>>> Stashed changes
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
         jpanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -100,14 +121,18 @@ public class MainJframe extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addContainerGap(104, Short.MAX_VALUE)
+=======
+                .addContainerGap(90, Short.MAX_VALUE)
+>>>>>>> Stashed changes
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -124,7 +149,11 @@ public class MainJframe extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin)
                     .addComponent(btnlogout)
+<<<<<<< Updated upstream
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> Stashed changes
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
@@ -180,16 +209,93 @@ public class MainJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlogoutActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+<<<<<<< Updated upstream
         // TODO add your handling code here:
         String UserName =txtUserName.getText();
         String Password =txtPassword.getText();
         if(UserName.equals("")||Password.equals("")  )
+=======
+//        // TODO add your handling code here:
+              Login();
+        
+//        String UserName =txtUserName.getText();
+//        String Password =txtPassword.getText();
+//	 UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(UserName, Password);		
+//         Enterprise inEnterprise=null;		
+//         Organization inOrganization=null;
+// 
+//
+//        if(UserName.equals("")||Password.equals("")  )
+//            {
+//                JOptionPane.showMessageDialog(null,"Username or Password can not be empty");
+//                return;
+//            }
+//        if(UserName.equals("sysadmin") && Password.equals("sysadmin"))
+//        {
+//            btnlogout.setEnabled(true);
+//            btnLogin.setEnabled(true);
+//            btnLogin.setVisible(false);
+//            txtUserName.setVisible(false);
+//            txtPassword.setVisible(false);
+//            jLabel1.setVisible(false);
+//            jLabel2.setVisible(false);
+//            jpanel1.removeAll();
+//            //  jpanel1.setSize(1200, 100);
+            //  jpanel1.setPreferredSize(new Dimension(1200, 100));
+            // jpanel1.setLayout(new java.awt.CardLayout());
+       //     SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,en,system,ed);
+       //     jpanel1.add("workArea", jp);
+       //     CardLayout layout=(CardLayout)jpanel1.getLayout();
+       //     layout.next(jpanel1);
+//
+//	  CardLayout layout=(CardLayout)jpanel1.getLayout();		
+//          jpanel1.add("workArea",userAccount.getRole().createWorkArea(jpanel1, userAccount, inOrganization, inEnterprise, system));		
+//          layout.next(jpanel1);	
+//            
+            //to clear the fields after login
+//            txtUserName.setText("");
+//            txtPassword.setText("");
+            // this.setVisible(false);
+            // jp.setVisible(true);
+
+            //jpanel1.add("workArea",jp);
+
+        //}
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    public void Login()
+    {
+        String userName = txtUserName.getText();
+        // Get Password
+        char[] passwordCharArray = txtPassword.getPassword();
+        String password = String.valueOf(passwordCharArray);
+        
+        //Step1: Check in the system admin user account directory if you have the user
+        UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
+        
+        Enterprise inEnterprise=null;
+        Organization inOrganization=null;
+       
+         if(userName.equals("")||password.equals("")  )
+>>>>>>> Stashed changes
             {
                 JOptionPane.showMessageDialog(null,"Username or Password can not be empty");
                 return;
             }
+<<<<<<< Updated upstream
         if(UserName.equals("Sysadmin") && Password.equals("Sysadmin"))
         {
+=======
+        
+         if(userName.equals("sysadmin")||password.equals("sysadmin")  )
+            {
+          CardLayout layout=(CardLayout)jpanel1.getLayout();		
+          jpanel1.add("workArea",userAccount.getRole().createWorkArea(jpanel1, userAccount, inOrganization, inEnterprise, system));		
+          layout.next(jpanel1);	
+          
+            txtUserName.setText("");
+            txtPassword.setText("");
+>>>>>>> Stashed changes
             btnlogout.setEnabled(true);
             btnLogin.setEnabled(true);
             btnLogin.setVisible(false);
@@ -197,6 +303,7 @@ public class MainJframe extends javax.swing.JFrame {
             txtPassword.setVisible(false);
             jLabel1.setVisible(false);
             jLabel2.setVisible(false);
+<<<<<<< Updated upstream
             jpanel1.removeAll();
             //  jpanel1.setSize(1200, 100);
             //  jpanel1.setPreferredSize(new Dimension(1200, 100));
@@ -208,16 +315,71 @@ public class MainJframe extends javax.swing.JFrame {
 
             
             //to clear the fields after login
+=======
+            //jpanel1.removeAll();
+
+                return;
+            }
+        
+         
+         
+        if(userAccount==null){
+            //Step 2: Go inside each network and check each enterprise
+            for(Network network:system.getNetworkList()){
+                //Step 2.a: check against each enterprise
+                for(Enterprise enterprise:network.getEpd().getEnterpriseList()){
+                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    if(userAccount==null){
+                       //Step 3:check against each organization for each enterprise
+                       for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                           userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+                           if(userAccount!=null){
+                               inEnterprise=enterprise;
+                               inOrganization=organization;
+                               break;
+                           }
+                       }
+                        
+                    }
+                    else{
+                       inEnterprise=enterprise;
+                       break;
+                    }
+                    if(inOrganization!=null){
+                        break;
+                    }  
+                }
+                if(inEnterprise!=null){
+                    break;
+                }
+            }
+        }
+        
+        if(userAccount==null){
+            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            return;
+        }
+        else{
+            
+            
+          CardLayout layout=(CardLayout)jpanel1.getLayout();		
+          jpanel1.add("workArea",userAccount.getRole().createWorkArea(jpanel1, userAccount, inOrganization, inEnterprise, system));		
+          layout.next(jpanel1);	
+          
+>>>>>>> Stashed changes
             txtUserName.setText("");
             txtPassword.setText("");
-            // this.setVisible(false);
-            // jp.setVisible(true);
-
-            //jpanel1.add("workArea",jp);
-
+            btnlogout.setEnabled(true);
+            btnLogin.setEnabled(true);
+            btnLogin.setVisible(false);
+            txtUserName.setVisible(false);
+            txtPassword.setVisible(false);
+            jLabel1.setVisible(false);
+            jLabel2.setVisible(false);
+            //jpanel1.removeAll();
         }
-    }//GEN-LAST:event_btnLoginActionPerformed
-
+        
+    }
     
     public void ReloadMainJpan(JPanel jp)
     {

@@ -76,14 +76,18 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="103" max="32767" attributes="0"/>
+                      <EmptySpace pref="90" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="106" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtUserName" min="-2" pref="246" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="101" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+<<<<<<< Updated upstream
                       <Component id="txtpassword" min="-2" pref="246" max="-2" attributes="0"/>
+=======
+                      <Component id="txtPassword" min="-2" pref="259" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnLogin" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -100,9 +104,13 @@
                           <Component id="jLabel2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="txtUserName" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+<<<<<<< Updated upstream
                           <Component id="txtpassword" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+=======
+>>>>>>> Stashed changes
                           <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnlogout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPassword" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="85" max="32767" attributes="0"/>
                   </Group>
@@ -123,11 +131,14 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtUserName">
             </Component>
+<<<<<<< Updated upstream
             <Component class="javax.swing.JTextField" name="txtpassword">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpasswordActionPerformed"/>
               </Events>
             </Component>
+=======
+>>>>>>> Stashed changes
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -155,6 +166,8 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoginActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="txtPassword">
             </Component>
           </SubComponents>
         </Container>
