@@ -6,6 +6,8 @@
 package UserInterface.SystemAdminWorkArea;
 
 import Business.DMEcosystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -21,11 +23,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel mainJpanel;
     DMEcosystem system;
+    EnterpriseDirectory ed;
+    Enterprise en;
     
-    public SystemAdminWorkAreaJPanel(JPanel jp , DMEcosystem system) {
+    public SystemAdminWorkAreaJPanel(JPanel jp ,  Enterprise en, DMEcosystem system, EnterpriseDirectory ed ) {
         initComponents();
         this.mainJpanel=jp;
         this.system=system;
+        this.en = en;
+        this.ed= ed;
+        
     }
 
     /**
@@ -83,7 +90,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(btnManageEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 290, 180));
 
         jButton4.setBackground(new java.awt.Color(61, 99, 210));
-        jButton4.setText("Manage Enterprise Admin");
+        jButton4.setText("View Enterprise ");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 310, 180));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -118,12 +130,20 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
         // TODO add your handling code here:
-        ManageEnterpriseDetailsJPanel smn=new ManageEnterpriseDetailsJPanel(mainJpanel,system);
+        ManageEnterpriseDetailsJPanel smn=new ManageEnterpriseDetailsJPanel(mainJpanel,system,ed);
         CardLayout cl=(CardLayout)mainJpanel.getLayout();
         mainJpanel.add("ManageEnterpriseDetailsJPanel",smn);
         cl.next(mainJpanel);
     
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+         EnterpriseDetailsTableJPanel edt =new EnterpriseDetailsTableJPanel(mainJpanel,system,ed);
+        CardLayout cl=(CardLayout)mainJpanel.getLayout();
+        mainJpanel.add("EnterpriseDetailsTableJPanel",edt);
+        cl.next(mainJpanel);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
