@@ -38,9 +38,9 @@ public class Network  {
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
-       
+//  
     
     
 }

@@ -232,9 +232,10 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         
         if(!IsUpdate)
         {
-            Network n =new Network();
-             n.setName(Name);
-            es.addNetwork(n);
+            Network n =es.createAndAddNetwork();
+            n.setName(Name);
+           // es.addNetwork(n);
+           
         }
         else 
         {
