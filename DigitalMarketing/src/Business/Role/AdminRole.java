@@ -7,22 +7,20 @@ package Business.Role;
 
 import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.EnterpriseDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
+import UserInterface.AdministrativeRole.AdminWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author dhava
  */
-public class SystemAdminRole extends Role  {
+public class AdminRole extends Role {
+    
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, DMEcosystem system) {
-        return new SystemAdminWorkAreaJPanel(userProcessContainer, system);
-
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, DMEcosystem business) {
+        return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
     }
 
- 
 }

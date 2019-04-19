@@ -6,17 +6,24 @@
 package   UserInterface;
 import Business.DMEcosystem;
 import Business.DB4OUtil.*;
-<<<<<<< Updated upstream
-=======
+
+
+
+
+
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;		
 import Business.UserAccount.UserAccount;
 import Business.Enterprise.EnterpriseDirectory;
+
 import Business.RegionNetwork.Network;
->>>>>>> Stashed changes
+
+
+
 import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
@@ -31,22 +38,31 @@ public class MainJframe extends javax.swing.JFrame {
     
     private DMEcosystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-<<<<<<< Updated upstream
-=======
+
+
+
     //EnterpriseDirectory ed;
     Enterprise en;
->>>>>>> Stashed changes
+
+
+    EnterpriseDirectory ed;
+    Enterprise en;
+
    // private javax.swing.JPanel container;  
     
     public MainJframe() {
         
         initComponents();
-        system =new DMEcosystem();
+//        system =new DMEcosystem();
         system = dB4OUtil.retrieveSystem();
-<<<<<<< Updated upstream
-=======
+
+
+
      //   ed=new EnterpriseDirectory();
->>>>>>> Stashed changes
+
+
+        ed=new EnterpriseDirectory();
+
         btnlogout.setEnabled(false);
         btnLogin.setVisible(true);
         txtUserName.setVisible(true);
@@ -69,10 +85,14 @@ public class MainJframe extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnlogout = new javax.swing.JButton();
         txtUserName = new javax.swing.JTextField();
-<<<<<<< Updated upstream
+
+
         txtPassword = new javax.swing.JPasswordField();
-=======
->>>>>>> Stashed changes
+
+
+
+        txtPassword = new javax.swing.JTextField();
+
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
@@ -121,11 +141,15 @@ public class MainJframe extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-<<<<<<< Updated upstream
+
+
                 .addContainerGap(104, Short.MAX_VALUE)
-=======
+
                 .addContainerGap(90, Short.MAX_VALUE)
->>>>>>> Stashed changes
+
+
+                .addContainerGap(103, Short.MAX_VALUE)
+
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,13 +171,18 @@ public class MainJframe extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin)
+
                     .addComponent(btnlogout)
-<<<<<<< Updated upstream
+
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-=======
+
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
->>>>>>> Stashed changes
+
+
+                    .addComponent(btnlogout))
+
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
@@ -209,12 +238,17 @@ public class MainJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlogoutActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-<<<<<<< Updated upstream
+
         // TODO add your handling code here:
         String UserName =txtUserName.getText();
         String Password =txtPassword.getText();
+	 UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(UserName, Password);		
+         Enterprise inEnterprise=null;		
+         Organization inOrganization=null;
+
+
         if(UserName.equals("")||Password.equals("")  )
-=======
+
 //        // TODO add your handling code here:
               Login();
         
@@ -277,15 +311,19 @@ public class MainJframe extends javax.swing.JFrame {
         Organization inOrganization=null;
        
          if(userName.equals("")||password.equals("")  )
->>>>>>> Stashed changes
+
             {
                 JOptionPane.showMessageDialog(null,"Username or Password can not be empty");
                 return;
             }
-<<<<<<< Updated upstream
+
+
         if(UserName.equals("Sysadmin") && Password.equals("Sysadmin"))
+
+        if(UserName.equals("sysadmin") && Password.equals("sysadmin"))
+
         {
-=======
+
         
          if(userName.equals("sysadmin")||password.equals("sysadmin")  )
             {
@@ -295,7 +333,7 @@ public class MainJframe extends javax.swing.JFrame {
           
             txtUserName.setText("");
             txtPassword.setText("");
->>>>>>> Stashed changes
+
             btnlogout.setEnabled(true);
             btnLogin.setEnabled(true);
             btnLogin.setVisible(false);
@@ -303,19 +341,22 @@ public class MainJframe extends javax.swing.JFrame {
             txtPassword.setVisible(false);
             jLabel1.setVisible(false);
             jLabel2.setVisible(false);
-<<<<<<< Updated upstream
+
             jpanel1.removeAll();
             //  jpanel1.setSize(1200, 100);
             //  jpanel1.setPreferredSize(new Dimension(1200, 100));
             // jpanel1.setLayout(new java.awt.CardLayout());
-            SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,system);
-            jpanel1.add("workArea", jp);
-            CardLayout layout=(CardLayout)jpanel1.getLayout();
-            layout.next(jpanel1);
+       //     SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,en,system,ed);
+       //     jpanel1.add("workArea", jp);
+       //     CardLayout layout=(CardLayout)jpanel1.getLayout();
+       //     layout.next(jpanel1);
 
+	  CardLayout layout=(CardLayout)jpanel1.getLayout();		
+          jpanel1.add("workArea",userAccount.getRole().createWorkArea(jpanel1, userAccount, inOrganization, inEnterprise, system));		
+          layout.next(jpanel1);	
             
             //to clear the fields after login
-=======
+
             //jpanel1.removeAll();
 
                 return;
@@ -366,7 +407,7 @@ public class MainJframe extends javax.swing.JFrame {
           jpanel1.add("workArea",userAccount.getRole().createWorkArea(jpanel1, userAccount, inOrganization, inEnterprise, system));		
           layout.next(jpanel1);	
           
->>>>>>> Stashed changes
+
             txtUserName.setText("");
             txtPassword.setText("");
             btnlogout.setEnabled(true);
@@ -391,6 +432,7 @@ public class MainJframe extends javax.swing.JFrame {
         jp.setLayout(new java.awt.CardLayout(40, -50));
 	jp.add(jLabel3, "card2");
         jSplitPane1.setRightComponent(jp);
+	dB4OUtil.storeSystem(system);	
     }
     
     
@@ -439,7 +481,7 @@ public class MainJframe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel jpanel1;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

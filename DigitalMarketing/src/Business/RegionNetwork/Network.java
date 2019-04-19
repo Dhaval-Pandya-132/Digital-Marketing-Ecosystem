@@ -38,19 +38,9 @@ public class Network  {
     }
 
     public void setName(String Name) {
-<<<<<<< Updated upstream
         this.Name = Name;
     }
        
-    @Override
-    public String toString()
-    {
-        return this.Name;
-=======
-        this.name = Name;
->>>>>>> Stashed changes
-    }
-//  
     
     
 }
