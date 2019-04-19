@@ -7,6 +7,8 @@ package   UserInterface;
 import Business.DMEcosystem;
 import Business.DB4OUtil.*;
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;		
+import Business.UserAccount.UserAccount;
 import Business.Enterprise.EnterpriseDirectory;
 import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
@@ -33,7 +35,7 @@ public class MainJframe extends javax.swing.JFrame {
     public MainJframe() {
         
         initComponents();
-        system =new DMEcosystem();
+//        system =new DMEcosystem();
         system = dB4OUtil.retrieveSystem();
         ed=new EnterpriseDirectory();
         btnlogout.setEnabled(false);
@@ -189,12 +191,17 @@ public class MainJframe extends javax.swing.JFrame {
         // TODO add your handling code here:
         String UserName =txtUserName.getText();
         String Password =txtPassword.getText();
+	 UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(UserName, Password);		
+         Enterprise inEnterprise=null;		
+         Organization inOrganization=null;
+
+
         if(UserName.equals("")||Password.equals("")  )
             {
                 JOptionPane.showMessageDialog(null,"Username or Password can not be empty");
                 return;
             }
-        if(UserName.equals("Sysadmin") && Password.equals("Sysadmin"))
+        if(UserName.equals("sysadmin") && Password.equals("sysadmin"))
         {
             btnlogout.setEnabled(true);
             btnLogin.setEnabled(true);
@@ -207,11 +214,14 @@ public class MainJframe extends javax.swing.JFrame {
             //  jpanel1.setSize(1200, 100);
             //  jpanel1.setPreferredSize(new Dimension(1200, 100));
             // jpanel1.setLayout(new java.awt.CardLayout());
-            SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,en,system,ed);
-            jpanel1.add("workArea", jp);
-            CardLayout layout=(CardLayout)jpanel1.getLayout();
-            layout.next(jpanel1);
+       //     SystemAdminWorkAreaJPanel jp=new SystemAdminWorkAreaJPanel(jpanel1,en,system,ed);
+       //     jpanel1.add("workArea", jp);
+       //     CardLayout layout=(CardLayout)jpanel1.getLayout();
+       //     layout.next(jpanel1);
 
+	  CardLayout layout=(CardLayout)jpanel1.getLayout();		
+          jpanel1.add("workArea",userAccount.getRole().createWorkArea(jpanel1, userAccount, inOrganization, inEnterprise, system));		
+          layout.next(jpanel1);	
             
             //to clear the fields after login
             txtUserName.setText("");
@@ -235,6 +245,7 @@ public class MainJframe extends javax.swing.JFrame {
         jp.setLayout(new java.awt.CardLayout(40, -50));
 	jp.add(jLabel3, "card2");
         jSplitPane1.setRightComponent(jp);
+	dB4OUtil.storeSystem(system);	
     }
     
     
