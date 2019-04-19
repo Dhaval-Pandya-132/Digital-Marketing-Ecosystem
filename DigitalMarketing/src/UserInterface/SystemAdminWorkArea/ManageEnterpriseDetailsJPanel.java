@@ -9,6 +9,7 @@ import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.RegionNetwork.Network;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.Date;
@@ -33,11 +34,14 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     Enterprise en;
     DMEcosystem es;
     EnterpriseDirectory ed;
+    //String Network = ddlNetwork.getSelectedItem().toString();
     
-    public ManageEnterpriseDetailsJPanel(JPanel jp,DMEcosystem es) {
+    public ManageEnterpriseDetailsJPanel(JPanel jp,DMEcosystem es, EnterpriseDirectory ed) {
         initComponents();
-        en=new Enterprise();
-        ed= new EnterpriseDirectory();
+       en=new Enterprise();
+       this.ed= ed;
+        //this.en = en;
+       // this.ed = ed;
         this.es=es;
         this.mainJpanel=jp;
         populateComboBox();
@@ -228,10 +232,30 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+         mainJpanel.remove(this);
+       CardLayout layout = (CardLayout) mainJpanel.getLayout();
+        layout.previous(mainJpanel);
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
+        
+         if(txtName.getText().equals("")||txtTotalEmployee.getText().equals("")||txtaddress.getText().equals("")||ddlNetwork.getSelectedItem().toString().equals("")||ddlenterprisetype.getSelectedItem().toString().equals(""))
+        {
+           JOptionPane.showMessageDialog(null, "One or more fields are empty");
+            
+        }
+   
+        int NoofEmployee = -1;
+        try{
+            NoofEmployee = Integer.parseInt(txtTotalEmployee.getText());
+        }
+        catch(NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Total Employees should be numeric value");
+            return;
+        }
         SaveEnterprise();
         JOptionPane.showMessageDialog(null, "Enterprise Created successfully..!!");
     }//GEN-LAST:event_btnsaveActionPerformed
@@ -242,12 +266,12 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
         ddlNetwork.removeAllItems();
         ddlenterprisetype.removeAllItems();
 
-        for (Network network : es.getNetworkList()) {
-            ddlNetwork.addItem(network.getName());
+      for (Network network : es.getNetworkList()) {
+            ddlNetwork.addItem(network.toString());
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            ddlenterprisetype.addItem(type.getValue());
+            ddlenterprisetype.addItem(type.toString());
         }
 
     }
@@ -256,19 +280,19 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     public void SaveEnterprise()
     {
     
-        Network network = (Network) ddlNetwork.getSelectedItem();
-        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) ddlenterprisetype.getSelectedItem();
+      //  Network network = (Network) ddlNetwork.getSelectedItem();
+       // Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) ddlenterprisetype.getSelectedItem();
 
         String Name =txtName.getText();
         String Path =lblfilepath.getText();
-        String Network =network.getName();
+        String Network = ddlNetwork.getSelectedItem().toString();
         Integer TotalEmployee =Integer.valueOf(txtTotalEmployee.getText());
         
         en.setNoofEmployee(TotalEmployee);
         en.setEnterpriseName(Name);
         en.setAddress(Name);
         en.setCreatedDate(new Date());
-        ed.createAndAddEnterprise(en, type);
+        ed.createAndAddEnterprise(en, ddlenterprisetype.getSelectedItem().toString());
         
     }
     
