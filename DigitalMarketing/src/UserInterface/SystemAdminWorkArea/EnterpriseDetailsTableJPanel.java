@@ -50,15 +50,18 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
        {
            DefaultTableModel DTM=(DefaultTableModel)tblEnterprise.getModel();
            DTM.setRowCount(0);
-           for(Enterprise en: ed.getEnterpriseList())
+        for (Network N:es.getNetworkList())
+        {
+           for(Enterprise en: N.getEpd().getEnterpriseList())
            {
                 Object[] row  =new Object[3];
                 row[0]=en;
-                row[1]=en.getEnterpriseName();
+                row[1]=N.getName();
                 row[2]=en.getNoofEmployee();
                 DTM.addRow(row);
            
            }
+        }
            
        }
 
@@ -75,6 +78,10 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
         btnview1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEnterprise = new javax.swing.JTable();
+        btnconfigureadmin = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("            View Enterprise");
@@ -90,16 +97,29 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
 
         tblEnterprise.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Enterprise Name", "Number of Employees"
+                "Enterprise Name", "Network", "Number of Employees"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblEnterprise);
+
+        btnconfigureadmin.setBackground(new java.awt.Color(0, 153, 255));
+        btnconfigureadmin.setText("Configure Admin");
+        btnconfigureadmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnconfigureadminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,32 +128,36 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(331, 331, 331)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnview1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(btnconfigureadmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(btnview1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(152, Short.MAX_VALUE))
+                        .addGap(286, 286, 286)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(btnview1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnview1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnconfigureadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(185, 185, 185))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnview1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnview1ActionPerformed
         // TODO add your handling code here:
-         int selectedRow=tblEnterprise.getSelectedRow();
+        int selectedRow=tblEnterprise.getSelectedRow();
         if (selectedRow>=0)
         {
         
@@ -151,8 +175,31 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnview1ActionPerformed
 
+    private void btnconfigureadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfigureadminActionPerformed
+        // TODO add your handling code here:
+        
+          int selectedRow=tblEnterprise.getSelectedRow();
+        if (selectedRow>=0)
+        {
+        
+            Enterprise en=(Enterprise)tblEnterprise.getValueAt(selectedRow,0);
+            ManageEnterpriseAdminJPanel vp =new ManageEnterpriseAdminJPanel(mainJpanel,es,en);
+            mainJpanel.add("ManageEnterpriseAdminJPanel",vp);
+            CardLayout cl=(CardLayout)mainJpanel.getLayout();
+            cl.next(mainJpanel);
+           // resetTextfield();
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        }
+        
+    }//GEN-LAST:event_btnconfigureadminActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnconfigureadmin;
     private javax.swing.JButton btnview1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
