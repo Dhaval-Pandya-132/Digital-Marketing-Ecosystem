@@ -28,13 +28,13 @@ public class EnterpriseDirectory {
     }
     
     //Create enterprise
-    public Enterprise createAndAddEnterprise(Enterprise E,String type){
-    //    Enterprise enterprise=null;
-        if(type=="Client"){
-       //     enterprise=new HospitalEnterprise(name);
-            enterpriseList.add(E);
+    public Enterprise createAndAddEnterprise(String name,String type){
+        Enterprise enterprise=null;
+        if(type.equals("Client")){
+            enterprise=new ClientEnterprise(name);
+            enterpriseList.add(enterprise);
         }
-        return E;
+        return enterprise;
     }
 
 }
