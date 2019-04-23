@@ -45,6 +45,12 @@ public class MainJframe extends javax.swing.JFrame {
         txtPassword.setVisible(true);
         jLabel1.setVisible(true);
         jLabel2.setVisible(true);
+        
+
+        
+        
+        
+        
         //container = new javax.swing.JPanel();
     }
 
@@ -182,7 +188,7 @@ public class MainJframe extends javax.swing.JFrame {
         jLabel1.setVisible(true);
         jLabel2.setVisible(true);
         jpanel1.removeAll();
-         
+        dB4OUtil.storeSystem(system); 
       //  JPanel mj = new JPanel();
         ReloadMainJpan(jpanel1);
         jSplitPane1.setDividerLocation(150);
