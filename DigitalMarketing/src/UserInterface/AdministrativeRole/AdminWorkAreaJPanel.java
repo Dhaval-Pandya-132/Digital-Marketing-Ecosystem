@@ -71,7 +71,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnManageEmployeeActionPerformed(evt);
             }
         });
-        add(btnManageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, 290, 180));
+        add(btnManageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 290, 180));
 
         btnManageusers.setBackground(new java.awt.Color(0, 0, 0));
         btnManageusers.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -95,7 +95,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnManageusersActionPerformed(evt);
             }
         });
-        add(btnManageusers, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 290, 180));
+        add(btnManageusers, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, 290, 180));
 
         btnManageOrganization.setBackground(new java.awt.Color(0, 0, 0));
         btnManageOrganization.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -142,7 +142,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployeeActionPerformed
         // TODO add your handling code here:
-        ManageEmployeeJPanel smn=new ManageEmployeeJPanel(userProcessContainer,enterprise);
+        ManageEmployeeJPanel smn=new ManageEmployeeJPanel(userProcessContainer,enterprise.getOrganizationDirectory());
         CardLayout cl=(CardLayout)userProcessContainer.getLayout();
         userProcessContainer.add("ManageEmployeeJPanel",smn);
         cl.next(userProcessContainer);
@@ -184,7 +184,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
-        ManageOrganizationJPanel smn=new ManageOrganizationJPanel(userProcessContainer,enterprise);
+        ManageOrganizationJPanel smn=new ManageOrganizationJPanel(userProcessContainer,enterprise.getOrganizationDirectory());
         CardLayout cl=(CardLayout)userProcessContainer.getLayout();
         userProcessContainer.add("ManageOrganizationJPanel",smn);
         cl.next(userProcessContainer);

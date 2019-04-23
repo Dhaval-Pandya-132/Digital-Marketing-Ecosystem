@@ -7,22 +7,23 @@ package Business.UserAccount;
 
 import Business.Employee.Employee;
 import Business.Role.Role;
+import Business.WorkQueue.WorkQueue;
 
 /**
  *
  * @author dhava
  */
 public class UserAccount {
-      private String username;
+    private String username;
     private String password;
     private Employee employee;
     private Role role;
-    //private WorkQueue workQueue;
+    private WorkQueue workQueue;
 
-//    public UserAccount() {
-//        workQueue = new WorkQueue();
-//    }
-//    
+    public UserAccount() {
+        workQueue = new WorkQueue();
+    }
+    
     
     
     public String getUsername() {
@@ -57,9 +58,9 @@ public class UserAccount {
         return employee;
     }
 
-//    public WorkQueue getWorkQueue() {
-//        return workQueue;
-//    }
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
 
     
     

@@ -158,18 +158,18 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tbluserlist.getModel();
 
         model.setRowCount(0);
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEpd().getEnterpriseList()) {
-                for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
+      //  for (Network network : system.getNetworkList()) {
+           // for (Enterprise enterprise : network.getEpd().getEnterpriseList()) {
+                for (UserAccount userAccount : E.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[3];
-                    row[0] = enterprise.getName();
-                    row[1] = network.getName();
+                    row[0] = E.getNetwork();
+                    row[1] = E.getName();
                     row[2] = userAccount.getUsername();
 
                     model.addRow(row);
                 }
-            }
-        }
+           // }
+        //}
     }
     
     

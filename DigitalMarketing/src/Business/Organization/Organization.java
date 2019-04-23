@@ -8,6 +8,7 @@ package Business.Organization;
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -17,14 +18,16 @@ import java.util.ArrayList;
 public abstract class Organization {
     
     private String name;
-   // private WorkQueue workQueue;
+    private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
     
     public enum Type{
-        Admin("Admin Organization"), ProductManager("ProductManager"), ProductAnalyst("ProductAnalyst");
+        Admin("AdminOrganization"), ProductManager("ProductManager"), ProductAnalyst("ProductAnalyst"),
+        MarketingManager("MarketingManager"), MarketAnalyst("MarketAnalyst"), DigitalMarketingManager("DigitalMarketingManager"),
+        SocialMediaSpecialist("SocialMediaSpecialist") ;
         private String value;
         private Type(String value) {
             this.value = value;
@@ -36,7 +39,7 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
-       // workQueue = new WorkQueue();
+        workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
@@ -61,17 +64,17 @@ public abstract class Organization {
         return name;
     }
 
-//    public WorkQueue getWorkQueue() {
-//        return workQueue;
-//    }
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
-//
-//    public void setWorkQueue(WorkQueue workQueue) {
-//        this.workQueue = workQueue;
-//    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
 
     @Override
     public String toString() {
