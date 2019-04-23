@@ -25,14 +25,33 @@ public class OrganizationDirectory {
     
     public Organization createOrganization(Organization.Type type){
         Organization organization = null;
-//        if (type.getValue().equals(Organization.Type.Doctor.getValue())){
-//         //   organization = new DoctorOrganization();
-//            organizationList.add(organization);
-//        }
-//        else if (type.getValue().equals(Organization.Type.Lab.getValue())){
-//           // organization = new LabOrganization();
-//            organizationList.add(organization);
-//        }
+        if (type.getValue().equals(Organization.Type.ProductManager.getValue())){
+            organization = new productManagerOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Organization.Type.ProductAnalyst.getValue())){
+            organization = new productAnalystOrganization();
+            organizationList.add(organization);
+        }
+        if (type.getValue().equals(Organization.Type.MarketingManager.getValue())){
+            organization = new marketingManagerOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Organization.Type.MarketAnalyst.getValue())){
+            organization = new marketAnalystOrganization();
+            organizationList.add(organization);
+        }
+        if (type.getValue().equals(Organization.Type.DigitalMarketingManager.getValue())){
+            organization = new digitalMarketingManagerOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Organization.Type.SocialMediaSpecialist.getValue())){
+            organization = new socialMediaSpecialistOrganization();
+            organizationList.add(organization);
+        }
+        
+        
+        
         return organization;
     }
     

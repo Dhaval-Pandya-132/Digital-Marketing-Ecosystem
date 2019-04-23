@@ -34,6 +34,16 @@ public class EnterpriseDirectory {
             enterprise=new ClientEnterprise(name);
             enterpriseList.add(enterprise);
         }
+        if(type.equals("MarketAnlysis")){
+            enterprise=new DigitalMarketingEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        if(type.equals("DigitalMarket")){
+            enterprise=new MarketingAnalysisEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        
+        
         return enterprise;
     }
 
