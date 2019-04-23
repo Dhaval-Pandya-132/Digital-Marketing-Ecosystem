@@ -79,6 +79,8 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEnterprise = new javax.swing.JTable();
         btnconfigureadmin = new javax.swing.JButton();
+        txtemailconfig = new javax.swing.JButton();
+        txttwitterconfig = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -114,10 +116,29 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblEnterprise);
 
         btnconfigureadmin.setBackground(new java.awt.Color(0, 153, 255));
+        btnconfigureadmin.setForeground(new java.awt.Color(255, 255, 255));
         btnconfigureadmin.setText("Configure Admin");
         btnconfigureadmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnconfigureadminActionPerformed(evt);
+            }
+        });
+
+        txtemailconfig.setBackground(new java.awt.Color(0, 153, 255));
+        txtemailconfig.setForeground(new java.awt.Color(255, 255, 255));
+        txtemailconfig.setText("Configure Email");
+        txtemailconfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtemailconfigActionPerformed(evt);
+            }
+        });
+
+        txttwitterconfig.setBackground(new java.awt.Color(0, 153, 255));
+        txttwitterconfig.setForeground(new java.awt.Color(255, 255, 255));
+        txttwitterconfig.setText("Configure Twitter");
+        txttwitterconfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttwitterconfigActionPerformed(evt);
             }
         });
 
@@ -133,7 +154,9 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnview1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(btnconfigureadmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnconfigureadmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtemailconfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txttwitterconfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(286, 286, 286)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -149,8 +172,12 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnview1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnconfigureadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnconfigureadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtemailconfig, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txttwitterconfig, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(185, 185, 185))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -197,6 +224,50 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnconfigureadminActionPerformed
 
+    private void txtemailconfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailconfigActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow=tblEnterprise.getSelectedRow();
+        if (selectedRow>=0)
+        {
+        
+            Enterprise en=(Enterprise)tblEnterprise.getValueAt(selectedRow,0);
+       //     EnterpriseEmailConnectionConfiguration vp =new EnterpriseEmailConnectionConfiguration(mainJpanel,es,en);
+//            mainJpanel.add("EnterpriseEmailConnectionConfiguration",vp);
+//            CardLayout cl=(CardLayout)mainJpanel.getLayout();
+//            cl.next(mainJpanel);
+           // resetTextfield();
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        }
+        
+        
+    }//GEN-LAST:event_txtemailconfigActionPerformed
+
+    private void txttwitterconfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttwitterconfigActionPerformed
+        // TODO add your handling code here:
+        int selectedRow=tblEnterprise.getSelectedRow();
+        if (selectedRow>=0)
+        {
+        
+            Enterprise en=(Enterprise)tblEnterprise.getValueAt(selectedRow,0);
+            ManageDigitalPlatformConfigurationPanel vp =new ManageDigitalPlatformConfigurationPanel(mainJpanel,es,en);
+            mainJpanel.add("ManageDigitalPlatformConfigurationPanel",vp);
+            CardLayout cl=(CardLayout)mainJpanel.getLayout();
+            cl.next(mainJpanel);
+           // resetTextfield();
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        }
+        
+    }//GEN-LAST:event_txttwitterconfigActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnconfigureadmin;
@@ -204,5 +275,7 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblEnterprise;
+    private javax.swing.JButton txtemailconfig;
+    private javax.swing.JButton txttwitterconfig;
     // End of variables declaration//GEN-END:variables
 }

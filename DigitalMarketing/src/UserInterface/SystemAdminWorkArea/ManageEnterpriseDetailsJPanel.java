@@ -34,7 +34,8 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     Enterprise en;
     DMEcosystem es;
     EnterpriseDirectory ed;
-    //String Network = ddlNetwork.getSelectedItem().toString();
+    String filepath="";
+//String Network = ddlNetwork.getSelectedItem().toString();
     
     public ManageEnterpriseDetailsJPanel(JPanel jp,DMEcosystem es, EnterpriseDirectory ed) {
         initComponents();
@@ -214,6 +215,7 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
                 }else {
                     
                       //FilePath.add(jfc.getSelectedFiles()[i].getPath()) ;
+                    filepath=jfc.getSelectedFile().getPath();
                     lblfilepath.setText(FileName);
                        break;
                 }      
@@ -318,6 +320,8 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
             Enterprise E=Network.getEpd().createAndAddEnterprise(Name, enterpriseTypeJComboBox.getSelectedItem().toString());
             E.setEnterpriseName(Name);
             E.setNoofEmployee(TotalEmployee);
+            E.setNetwork(Network.getName());
+            E.setProfilePhoto(filepath);
             E.setCreatedDate(new Date());
             E.setEnterpriseType(Enterprise.EnterpriseType.valueOf(enterpriseTypeJComboBox.getSelectedItem().toString()));
             E.setAddress(txtaddress.getText());
