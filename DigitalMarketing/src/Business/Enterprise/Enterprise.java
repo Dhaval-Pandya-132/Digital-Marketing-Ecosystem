@@ -25,6 +25,44 @@ public abstract class Enterprise  extends Organization{
     private String profilePhoto;
     private String network;
     private String type;
+    
+    private String Consumerkey="";
+    private String ConsumerSecretkey="";
+    private String AccessToken="";
+    private String AccessTokenSecret=""; 
+
+    public String getConsumerkey() {
+        return Consumerkey;
+    }
+
+    public void setConsumerkey(String Consumerkey) {
+        this.Consumerkey = Consumerkey;
+    }
+
+    public String getConsumerSecretkey() {
+        return ConsumerSecretkey;
+    }
+
+    public void setConsumerSecretkey(String ConsumerSecretkey) {
+        this.ConsumerSecretkey = ConsumerSecretkey;
+    }
+
+    public String getAccessToken() {
+        return AccessToken;
+    }
+
+    public void setAccessToken(String AccessToken) {
+        this.AccessToken = AccessToken;
+    }
+
+    public String getAccessTokenSecret() {
+        return AccessTokenSecret;
+    }
+
+    public void setAccessTokenSecret(String AccessTokenSecret) {
+        this.AccessTokenSecret = AccessTokenSecret;
+    }
+    
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
 
@@ -79,7 +117,7 @@ public abstract class Enterprise  extends Organization{
 
     
     public enum EnterpriseType{
-        Client("Client"),Marketanalysis("Marketanlysis"),DigitalMarket("DigitalMarket");
+        Client("Client"),MarketAnlysis("MarketAnlysis"),DigitalMarket("DigitalMarket");
        
         private String value;
         
