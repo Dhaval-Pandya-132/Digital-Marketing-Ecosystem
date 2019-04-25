@@ -6,10 +6,12 @@
 package UserInterface.AdministrativeRole;
 
 import Business.Employee.Employee;
+import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +27,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     //private Enterprise enterprise;
      private OrganizationDirectory organizationDir;
+     EmployeeDirectory ed;
    
     public ManageEmployeeJPanel(JPanel userProcessContainer,OrganizationDirectory organizationDir) {
         initComponents();
@@ -53,9 +56,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
        
         
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
-            Object[] row = new Object[2];
-            row[0] = employee.getId();
-            row[1] = employee.getName();
+            Object[] row = new Object[3];
+            row[0] = employee;
+            row[1] = employee.getId();
+            row[2] = employee.getName();
             model.addRow(row);
         }
         }
@@ -78,6 +82,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         organizationJComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        deleteButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -121,7 +126,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 170, 40));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 170, 40));
 
         jLabel2.setText("Name");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 74, 26));
@@ -161,15 +166,32 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Organization");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+
+        deleteButton.setBackground(new java.awt.Color(0, 153, 255));
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Delete");
+        deleteButton.setPreferredSize(new java.awt.Dimension(29, 17));
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+        add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 170, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-        String name = nameJTextField.getText();
-
-        organization.getEmployeeDirectory().createEmployee(name);
-        populateTable();
+        if(nameJTextField.getText().equals(""))
+        {
+             JOptionPane.showMessageDialog(null,"Please add the name of the Employee");
+        }
+        else{
+             Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+                String name = nameJTextField.getText();
+                organization.getEmployeeDirectory().createEmployee(name);
+                populateTable();
+                nameJTextField.setText("");
+        }
 
     }//GEN-LAST:event_addJButtonActionPerformed
 
@@ -199,10 +221,36 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+       int selectedRow=organizationJTable.getSelectedRow();
+        if (selectedRow>=0)
+        {
+             int selectionButton = JOptionPane.YES_NO_OPTION;
+            int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to delete??","Warning",selectionButton);
+            if(selectionResult == JOptionPane.YES_OPTION){
+        
+            Employee e=(Employee)organizationJTable.getValueAt(selectedRow,0);
+            ed.removeEmployee(e);
+            populateTable();    
+           // resetTextfield();
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        } 
+        
+        
+        
+        
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
