@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class EmployeeDirectory {
     private ArrayList<Employee> employeeList;
-
+    
     public EmployeeDirectory() {
         employeeList = new ArrayList();
     }
@@ -28,4 +28,10 @@ public class EmployeeDirectory {
         employeeList.add(employee);
         return employee;
     }
+    public void removeEmployee(Employee e)
+    {
+        employeeList.remove(e);
+    }
+    
+    
 }

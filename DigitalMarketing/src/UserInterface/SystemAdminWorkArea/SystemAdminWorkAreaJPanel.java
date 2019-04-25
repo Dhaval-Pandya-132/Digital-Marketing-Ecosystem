@@ -53,8 +53,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1000, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setText("Welcome System Admin..!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 240, 100));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 370, 100));
 
         btnManageNetwork.setBackground(new java.awt.Color(0, 0, 0));
         btnManageNetwork.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -80,7 +81,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnManageNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 290, 180));
 
-        btnManageEnterprise.setBackground(new java.awt.Color(61, 99, 210));
+        btnManageEnterprise.setBackground(new java.awt.Color(0, 0, 0));
+        btnManageEnterprise.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnManageEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         btnManageEnterprise.setText("Manage Enterprise");
         btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +92,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnManageEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 290, 180));
 
-        jButton4.setBackground(new java.awt.Color(61, 99, 210));
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("View Enterprise ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
