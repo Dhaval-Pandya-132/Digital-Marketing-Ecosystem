@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -210,10 +211,16 @@ public class ManageUserJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         Employee employee = (Employee) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();
-
-        organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-
-        popData();
+        if(userName.equals("")||password.equals("")||organization.equals("")||employee.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "One or more fields are empty.");
+        }
+        else
+        {
+            organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+            popData();
+        }
+        
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
