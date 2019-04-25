@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.RegionNetwork.Network;
 import Business.Role.AdminRole;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -103,7 +104,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 105, 76));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 105, 76));
         add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 240, 30));
         add(txtrepassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 240, 30));
 
@@ -147,9 +148,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 //                panel.PopulateTable();
 //            }
 //        }
-        //        mainJpanel.remove(this);
-        //        CardLayout layout = (CardLayout) mainJpanel.getLayout();
-        //        layout.previous(mainJpanel);
+               userProcessContainer.remove(this);
+               CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     
@@ -183,17 +184,34 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String repassword = String.valueOf(txtrepassword.getPassword());
         String name = txtName.getText();
         
-        if (!password.equals(repassword))
+         
+        if(txtName.getText().equals("")||txtUserName.getText().equals("")||password.equals("")||repassword.equals(""))
         {
-               JOptionPane.showMessageDialog(null, "Password does not match");
+           JOptionPane.showMessageDialog(null, "One or more fields are empty");
+            
         }
+       
         else
         {
-            Employee employee = E.getEmployeeDirectory().createEmployee(name);   
+             if (!password.equals(repassword))
+             {
+               JOptionPane.showMessageDialog(null, "Password does not match");
+             }
+             else{
+                 Employee employee = E.getEmployeeDirectory().createEmployee(name);   
             UserAccount account = E.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
             populateTable() ;
             JOptionPane.showMessageDialog(null, "Enterprise Admin created successfully..!!");
+                txtName.setText("");
+                txtUserName.setText("");
+                txtpassword.setText("");
+                txtrepassword.setText("");
+             }
+            
         }
+        
+       
+      
         
         
         
