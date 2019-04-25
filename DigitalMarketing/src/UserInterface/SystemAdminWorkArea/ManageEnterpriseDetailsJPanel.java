@@ -253,7 +253,8 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(null, "One or more fields are empty");
             
         }
-   
+
+         
         int NoofEmployee = -1;
         try{
             NoofEmployee = Integer.parseInt(txtTotalEmployee.getText());
@@ -264,6 +265,10 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
             return;
         }
         SaveEnterprise();
+        txtName.setText("");
+        txtaddress.setText("");
+        txtTotalEmployee.setText("");
+       
         JOptionPane.showMessageDialog(null, "Enterprise Created successfully..!!");
     }//GEN-LAST:event_btnsaveActionPerformed
 

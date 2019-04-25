@@ -144,13 +144,20 @@ public class ManageDigitalPlatformConfigurationPanel extends javax.swing.JPanel 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-
-            saveTwitterConfig();
+         if(txtAccessKey.getText().equals("")||txtAccessTokenSecret.getText().equals("")||txtConsumerKey.getText().equals("")|| txtConsumerSecretKey.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"One or more fields are empty");
+        }
+         else
+         {
+              saveTwitterConfig();
             
             txtConsumerKey.setText("");
             txtConsumerSecretKey.setText("");
             txtAccessKey.setText("");
             txtAccessTokenSecret.setText("");
+         }
+           
             
 
     }//GEN-LAST:event_btnSaveActionPerformed
