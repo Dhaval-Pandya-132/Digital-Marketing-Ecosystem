@@ -27,6 +27,41 @@ public abstract class WorkRequest {
     private String description;
     private Date Duedate;
     private Employee  Assignto;
+    private productDetailWorkRequest pdw; 
+    private productRiskAnalysis pra;
+
+    public productRiskAnalysis getPra() {
+        return pra;
+    }
+
+    public void setPra(productRiskAnalysis pra) {
+        this.pra = pra;
+    }
+    private ProducttwitterdataWorkrequest twr;
+
+//    public productRiskAnalysis getPra() {
+//        return pra;
+//    }
+
+    public ProducttwitterdataWorkrequest getTwr() {
+        return twr;
+    }
+
+    public void setTwr(ProducttwitterdataWorkrequest twr) {
+        this.twr = twr;
+    }
+
+//    public void setPra(productRiskAnalysis pra) {
+//        this.pra = pra;
+//    }
+    
+    public productDetailWorkRequest getPdw() {
+        return pdw;
+    }
+
+    public void setPdw(productDetailWorkRequest pdw) {
+        this.pdw = pdw;
+    }
 
     @Override
     public String toString()
@@ -101,7 +136,8 @@ public abstract class WorkRequest {
         requestDate = new Date();
         UUID uuid = UUID.randomUUID();
         this.TaskID = uuid.toString();
-        
+     //   this.pdw=new productDetailWorkRequest();
+      //  this.pra=new  productRiskAnalysis();
         
     }
 

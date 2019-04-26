@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import twitter4j.TwitterException;
 
 /**
  *
@@ -139,7 +140,16 @@ public class ProductmanagerworkareaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageTaskActionPerformed
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
-        // TODO add your handling code here:
+       try {
+           // TODO add your handling code here:
+           TwitterAnalysis smn=new TwitterAnalysis(userProcessContainer,account,enterprise);
+           CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+           userProcessContainer.add("TwitterAnalysis",smn);
+           cl.next(userProcessContainer);
+       } catch (TwitterException ex) {
+           Logger.getLogger(ProductmanagerworkareaJPanel.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnCreateTaskFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnCreateTaskFocusGained

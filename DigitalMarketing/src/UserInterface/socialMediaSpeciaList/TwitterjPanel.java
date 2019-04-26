@@ -6,12 +6,16 @@
 package UserInterface.socialMediaSpeciaList;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -30,16 +34,59 @@ public class TwitterjPanel extends javax.swing.JPanel {
     UserAccount account;
     WorkRequest request;
     Enterprise enterprise;
-    public TwitterjPanel(JPanel userProcessContainer,UserAccount account,WorkRequest request,Enterprise enterprise) {
+    String consumerKeyStr = "";
+    String consumerSecretStr ="";
+    String accessTokenStr = "";
+    String accessTokenSecretStr ="";
+    public TwitterjPanel(JPanel userProcessContainer,UserAccount account,WorkRequest request,Enterprise enterprise) throws TwitterException {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.request=request;
         this.enterprise=enterprise;
-        
-        
+          consumerKeyStr = enterprise.getConsumerkey();//"zpGL6kU6RKXoHE7MYkX1hsS5u";
+ 
+        //Your Twitter App's Consumer Secret
+         consumerSecretStr = enterprise.getConsumerSecretkey();//"KtubqX7OqHxZm79F9CeeeU9z7EXCaKOYtAVFIrflsgcr1wSFUL";
+ 
+        //Your Twitter Access Token
+         accessTokenStr = enterprise.getAccessToken();//"1114998612692545550-TRf6N9YGy2SrD8cE7dlriQSCLjErCL";
+ 
+        //Your Twitter Access Token Secret
+         accessTokenSecretStr = enterprise.getAccessTokenSecret();//"5687xOyIqQzw3CHes45fvKIOMEgACoXmjcRWZLGSnqa1m";
+            
+        populateRequestTable();
     }
 
+    
+    public void populateRequestTable() throws TwitterException{
+        DefaultTableModel model = (DefaultTableModel) tbltweets.getModel();
+             Twitter twitter = new TwitterFactory().getInstance();
+
+			twitter.setOAuthConsumer(consumerKeyStr, consumerSecretStr);
+			AccessToken accessToken = new AccessToken(accessTokenStr,
+					accessTokenSecretStr);
+
+			twitter.setOAuthAccessToken(accessToken);
+        model.setRowCount(0);
+        List<Status> statuses = twitter.getHomeTimeline(); 
+      //  for (Organization o :enterprise.getOrganizationDirectory().getOrganizationList()) {
+ 
+         for ( Status s :statuses) {
+              Object[] row = new Object[4];
+                    row[0] = s.getText();
+                    row[1] = s.getRetweetCount();
+                     model.addRow(row);
+        }
+
+          //  row[1] = ()request.;
+          //  row[2] = o.;
+          //  row[3] = request.getDuedate();
+                
+             
+      
+   }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,7 +100,8 @@ public class TwitterjPanel extends javax.swing.JPanel {
         txttwitter = new javax.swing.JTextArea();
         btnproceed = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbltweets = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,33 +126,27 @@ public class TwitterjPanel extends javax.swing.JPanel {
         });
         add(btnproceed, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 150, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbltweets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tweet"
+                "Tweet", "RetweetCount"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tbltweets);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, -1, 280));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, -1, 280));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Twitter Analysis");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 280, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnproceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnproceedActionPerformed
         // TODO add your handling code here:
         //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-      String consumerKeyStr = enterprise.getConsumerkey();//"zpGL6kU6RKXoHE7MYkX1hsS5u";
- 
-        //Your Twitter App's Consumer Secret
-        String consumerSecretStr = enterprise.getConsumerSecretkey();//"KtubqX7OqHxZm79F9CeeeU9z7EXCaKOYtAVFIrflsgcr1wSFUL";
- 
-        //Your Twitter Access Token
-        String accessTokenStr = enterprise.getAccessToken();//"1114998612692545550-TRf6N9YGy2SrD8cE7dlriQSCLjErCL";
- 
-        //Your Twitter Access Token Secret
-        String accessTokenSecretStr = enterprise.getAccessTokenSecret();//"5687xOyIqQzw3CHes45fvKIOMEgACoXmjcRWZLGSnqa1m";
-            
+     
         Twitter twitter = new TwitterFactory().getInstance();
 
 			twitter.setOAuthConsumer(consumerKeyStr, consumerSecretStr);
@@ -124,6 +166,8 @@ public class TwitterjPanel extends javax.swing.JPanel {
             else
             {
                 twitter.updateStatus(txttwitter.getText());
+                txttwitter.setText("");
+                populateRequestTable();
             }
             
         } catch (TwitterException ex) {
@@ -147,9 +191,10 @@ public class TwitterjPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnproceed;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbltweets;
     private javax.swing.JTextArea txttwitter;
     // End of variables declaration//GEN-END:variables
 }
