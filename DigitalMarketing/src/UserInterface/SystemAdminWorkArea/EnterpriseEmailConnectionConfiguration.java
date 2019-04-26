@@ -2,7 +2,6 @@ package UserInterface.SystemAdminWorkArea;
 
 import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
-import UserInterface.socialMediaSpeciaList.SendEmail;
 import java.awt.CardLayout;
 import java.util.Properties;
 import java.util.regex.Matcher;

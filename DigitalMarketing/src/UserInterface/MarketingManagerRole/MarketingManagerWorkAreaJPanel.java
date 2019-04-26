@@ -9,6 +9,8 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.marketingManagerOrganization;
 import Business.Organization.productManagerOrganization;
 import Business.UserAccount.UserAccount;
+import UserInterface.ProductManagerRole.productManagerViewTaskJpanel;
+import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -101,7 +103,10 @@ public class MarketingManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTaskActionPerformed
         // TODO add your handling code here:
-
+        MarketingManagerworklistJPanel smn=new MarketingManagerworklistJPanel(userProcessContainer,account,enterprise);
+        CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+        userProcessContainer.add("MarketingManagerworklistJPanel",smn);
+        cl.next(userProcessContainer);
       
     }//GEN-LAST:event_btnManageTaskActionPerformed
 

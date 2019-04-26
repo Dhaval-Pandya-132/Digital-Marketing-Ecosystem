@@ -215,7 +215,7 @@ public class EnterpriseDetailsTableJPanel extends javax.swing.JPanel {
         
             Enterprise en=(Enterprise)tblEnterprise.getValueAt(selectedRow,0);
             ViewEnterpriseDetailsJPanel vp =new ViewEnterpriseDetailsJPanel(mainJpanel,es,en);
-            mainJpanel.add("View EnterPrise",vp);
+            mainJpanel.add("ViewEnterpriseDetailsJPanel",vp);
             CardLayout cl=(CardLayout)mainJpanel.getLayout();
             cl.next(mainJpanel);
            // resetTextfield();
