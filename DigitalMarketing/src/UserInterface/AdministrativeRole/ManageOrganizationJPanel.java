@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -166,10 +167,21 @@ private void populateCombo(){
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-
-        Type type = (Type) organizationJComboBox.getSelectedItem();
-        directory.createOrganization(type);
-        populateTable();
+ Type type = (Type) organizationJComboBox.getSelectedItem();
+     
+        for(Organization O: directory.getOrganizationList()) 
+                {
+                    if (O.getName().equals(type.getValue()))
+                    { 
+                        JOptionPane.showMessageDialog(null, "Already selected..check again..");
+                        return;
+                    }
+                    
+                }
+        
+                directory.createOrganization(type);
+          populateTable(); 
+      
     }//GEN-LAST:event_addJButtonActionPerformed
 
 

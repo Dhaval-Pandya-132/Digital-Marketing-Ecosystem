@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +28,7 @@ public class ManageUserJPanel extends javax.swing.JPanel {
      private JPanel container;
    // private JPanel userProcessContainer;
     private Enterprise enterprise;
+     String regex = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[#]).{8,15})";
     
     public ManageUserJPanel(JPanel container,Enterprise enterprise) {
         initComponents();
@@ -211,14 +213,30 @@ public class ManageUserJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         Employee employee = (Employee) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();
+         for (Organization org:enterprise.getOrganizationDirectory().getOrganizationList())
+        {
+          if(org.getUserAccountDirectory().checkIfUsernameIsUnique(userName)==false)
+          {
+              JOptionPane.showMessageDialog(null, "Username already exists..");
+              //return;
+          }
+    
+        }
         if(userName.equals("")||password.equals("")||organization.equals("")||employee.equals(""))
         {
             JOptionPane.showMessageDialog(null, "One or more fields are empty.");
         }
         else
         {
-            organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-            popData();
+            if(!(Pattern.matches(regex,password)))
+                   {
+                      JOptionPane.showMessageDialog(null,"Please check Password it should contain one capital,small and #","Error",JOptionPane.ERROR_MESSAGE);
+                   }
+             else
+             {
+                  organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+                  popData();
+             }
         }
         
     }//GEN-LAST:event_createUserJButtonActionPerformed
