@@ -26,7 +26,7 @@ public class productAnalystRole extends Role{
       @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, DMEcosystem business) {
           try {
-              return new productAnalystworkareaJPanel(userProcessContainer, account, (productAnalystOrganization)organization, enterprise);
+              return new productAnalystworkareaJPanel(userProcessContainer, account, (productAnalystOrganization)organization, enterprise, business);
           } catch (IOException ex) {
               Logger.getLogger(productAnalystRole.class.getName()).log(Level.SEVERE, null, ex);
           }

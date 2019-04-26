@@ -26,7 +26,7 @@ public class digitalMarketingManagerRole extends Role {
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, DMEcosystem business) {
          try {
-             return new DigitalMarketingManagerWorkAreaJPanel(userProcessContainer, account, (digitalMarketingManagerOrganization)organization, enterprise);
+             return new DigitalMarketingManagerWorkAreaJPanel(userProcessContainer, account, (digitalMarketingManagerOrganization)organization, enterprise,business);
          } catch (IOException ex) {
              Logger.getLogger(productManagerRole.class.getName()).log(Level.SEVERE, null, ex);
          }

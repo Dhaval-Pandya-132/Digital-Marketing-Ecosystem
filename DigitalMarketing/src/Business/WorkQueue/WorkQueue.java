@@ -13,9 +13,19 @@ import java.util.ArrayList;
  */
 public class WorkQueue {
      private ArrayList<WorkRequest> workRequestList;
+    private ArrayList<productDetailWorkRequest> productDetailWorkRequestList;
+
+    public ArrayList<productDetailWorkRequest> getProductDetailWorkRequestList() {
+        return productDetailWorkRequestList;
+    }
+
+    public void setProductDetailWorkRequestList(ArrayList<productDetailWorkRequest> productDetailWorkRequestList) {
+        this.productDetailWorkRequestList = productDetailWorkRequestList;
+    }
 
     public WorkQueue() {
-        workRequestList = new ArrayList();
+        this.workRequestList = new ArrayList();
+        this.productDetailWorkRequestList=new  ArrayList();
     }
 
     public ArrayList<WorkRequest> getWorkRequestList() {
