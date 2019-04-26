@@ -76,14 +76,14 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="103" max="32767" attributes="0"/>
+                      <EmptySpace pref="90" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="106" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtUserName" min="-2" pref="246" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="101" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtpassword" min="-2" pref="246" max="-2" attributes="0"/>
+                      <Component id="txtPassword" min="-2" pref="259" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnLogin" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -100,9 +100,9 @@
                           <Component id="jLabel2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="txtUserName" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="txtpassword" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnlogout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPassword" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="85" max="32767" attributes="0"/>
                   </Group>
@@ -122,11 +122,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtUserName">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtpassword">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpasswordActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -156,6 +151,8 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoginActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JPasswordField" name="txtPassword">
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jpanel1">
@@ -178,7 +175,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout">
             <Property name="horizontalGap" type="int" value="40"/>
-            <Property name="verticalGap" type="int" value="-100"/>
+            <Property name="verticalGap" type="int" value="-50"/>
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel3">

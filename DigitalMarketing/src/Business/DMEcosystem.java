@@ -5,27 +5,41 @@
  */
 package Business;
 
+import Business.Organization.Organization;
 import Business.RegionNetwork.Network;
+import Business.Role.Role;
+import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 
 /**
  *
  * @author dhava
  */
-public class DMEcosystem {
+public class DMEcosystem extends Organization {
    
      private static DMEcosystem business;
-       private ArrayList<Network> networkList;
-    public static DMEcosystem getBusiness() {
+    private ArrayList<Network> networkList;
+    public static DMEcosystem getInstance(){
+        if(business==null){
+            business=new DMEcosystem();
+        }
         return business;
     }
-
-    public DMEcosystem() {
-        networkList =new ArrayList<Network> ();
+    
+    public Network createAndAddNetwork(){
+        Network network=new Network();
+        networkList.add(network);
+        return network;
     }
-
-    public static void setBusiness(DMEcosystem business) {
-        DMEcosystem.business = business;
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roleList=new ArrayList<Role>();
+        roleList.add(new SystemAdminRole());
+        return roleList;
+    }
+    private DMEcosystem(){
+        super(null);
+        networkList=new ArrayList<Network>();
     }
 
     public ArrayList<Network> getNetworkList() {
@@ -35,18 +49,16 @@ public class DMEcosystem {
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
-   
-     public static DMEcosystem getInstance(){
-        if(business==null){
-            business=new DMEcosystem();
+    
+    public boolean checkIfUserIsUnique(String userName){
+        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+            return false;
         }
-        return business;
+        for(Network network:networkList){
+            
+        }
+        return true;
     }
-   
-     public void addNetwork(Network N)
-     {
-         networkList.add(N);
-     }
      
      
 }

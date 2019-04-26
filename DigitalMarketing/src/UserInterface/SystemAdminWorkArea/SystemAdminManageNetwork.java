@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author dhava
+ * @author dafhava
  */
 public class SystemAdminManageNetwork extends javax.swing.JPanel {
 
@@ -26,6 +26,8 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
     JPanel mainJpanel;
     Network rn;
     DMEcosystem es;
+  //  private JPanel SystemAdminWorkAreaJPanel;
+    
     public SystemAdminManageNetwork(JPanel jp,DMEcosystem es) {
         initComponents();
         rn=new Network();
@@ -34,7 +36,8 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
       //  btnBack.getBorder().paintBorder(jp, g, WIDTH, WIDTH, WIDTH, HEIGHT);
         jScrollPane1.setBorder(BorderFactory.createEmptyBorder());
         this.mainJpanel=jp;
-        PopulateTable();
+       // this.SystemAdminWorkAreaJPanel = SAW;
+        PopulateTable("");
     }
 
     /**
@@ -54,14 +57,21 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         tblNetworkList = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Manage Network");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 292, 83));
 
         jLabel2.setText("Name :");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 67, 32));
+        add(txtNetworkName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 183, -1));
 
         btnEdit.setBackground(new java.awt.Color(0, 153, 255));
         btnEdit.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,6 +81,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 180, 112, 41));
 
         tblNetworkList.setAutoCreateRowSorter(true);
         tblNetworkList.setModel(new javax.swing.table.DefaultTableModel(
@@ -102,6 +113,8 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
             tblNetworkList.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 368, 378));
+
         btnSave.setBackground(new java.awt.Color(0, 153, 255));
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Save");
@@ -111,6 +124,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 112, 41));
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png"))); // NOI18N
@@ -130,53 +144,27 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 105, 76));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(72, 72, 72)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(168, 168, 168)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
+        btnSearch.setBackground(new java.awt.Color(0, 153, 255));
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 110, 40));
+
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 190, -1));
+
+        jLabel3.setText("Search Keyword: ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 32));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
@@ -192,22 +180,37 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+       
+       mainJpanel.remove(this);
+       CardLayout layout = (CardLayout) mainJpanel.getLayout();
+        layout.previous(mainJpanel);
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       
-        if (btnSave.getText().equals("Update"))
-        {
-            btnSave.setText("Save");
-              AddNetwork(true);
-        }
-        else
-        {
-            AddNetwork(false);
-        }
+       if(txtNetworkName.getText().equals("")|| checkElement())
+       {
+           JOptionPane.showMessageDialog(null, "Network Name can not be blank or Duplicate");
+       }
+       else
+       {
+           if (btnSave.getText().equals("Update"))
+            {
+                btnSave.setText("Save");
+                 AddNetwork(true);
+                 JOptionPane.showMessageDialog(null, "Network added Successfully");
+              
+            }
+            else
+            {
+                AddNetwork(false);
+                JOptionPane.showMessageDialog(null, "Network added Successfully");
+
+            }
         
+            txtNetworkName.setText("");
+       }
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -220,6 +223,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
            rn=(Network)tblNetworkList.getValueAt(selectedRow,0);
            txtNetworkName.setText(rn.getName());
            btnSave.setText("Update");
+          
            // resetTextfield();s
             
         }
@@ -231,6 +235,28 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        PopulateTable(txtSearch.getText());
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+  
+   public boolean checkElement()
+    {
+        Boolean B=false ;
+        for(Network s : es.getNetworkList())
+        {
+           if(s.getName().equals(txtNetworkName.getText())) 
+           {
+               B= true;
+               break;
+           }
+        }
+        return B;
+    }
     public void AddNetwork(Boolean IsUpdate)
     {
         String Name =txtNetworkName.getText();
@@ -238,18 +264,19 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         
         if(!IsUpdate)
         {
-            Network n =new Network();
-             n.setName(Name);
-            es.addNetwork(n);
+            Network n =es.createAndAddNetwork();
+            n.setName(Name);
+           // es.addNetwork(n);
+           
         }
         else 
         {
             rn.setName(Name);
         }
-        PopulateTable();
+        PopulateTable("");
     }
 
-    public void PopulateTable()
+    public void PopulateTable(String text)
     {
       
            DefaultTableModel DTM=(DefaultTableModel)tblNetworkList.getModel();
@@ -258,7 +285,11 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
            {
                 Object[] row  =new Object[1];
                 row[0]=ps;
-                DTM.addRow(row);
+                if(ps.toString().contains(text)|| text=="")
+                {
+                        DTM.addRow(row); 
+                }
+           
            
            }
        
@@ -269,10 +300,13 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblNetworkList;
     private javax.swing.JTextField txtNetworkName;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
