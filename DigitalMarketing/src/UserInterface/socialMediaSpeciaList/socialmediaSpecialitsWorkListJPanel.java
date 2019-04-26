@@ -14,9 +14,13 @@ import Business.WorkQueue.WorkRequest;
 import Business.WorkQueue.productDetailWorkRequest;
 import UserInterface.ProductAnalystRole.ProductAnalystProductDetailsJpanel;
 import java.awt.CardLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import twitter4j.TwitterException;
 
 /**
  *
@@ -56,7 +60,7 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
             for (WorkRequest request :O.getWorkQueue().getWorkRequestList())
             {  
                     Object[] row = new Object[4];
-                    row[0] = request.getTaskID();
+                    row[0] = request;
                     row[1] = request.getTitle();
 
           //  row[1] = ()request.;
@@ -154,10 +158,16 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
             
             WorkRequest en=(WorkRequest)tbltasklist.getValueAt(selectedRow,0);
             en.setStatus("In Process Digital Marketing Team");
-            TwitterjPanel smn=new TwitterjPanel(userProcessContainer,account,en,enterprise);
-            CardLayout cl=(CardLayout)userProcessContainer.getLayout();
-            userProcessContainer.add("TwitterjPanel",smn);
-            cl.next(userProcessContainer);
+            TwitterjPanel smn;
+             try {
+                 smn = new TwitterjPanel(userProcessContainer,account,en,enterprise);
+                  CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+               userProcessContainer.add("TwitterjPanel",smn);
+             cl.next(userProcessContainer);
+             } catch (TwitterException ex) {
+                 Logger.getLogger(socialmediaSpecialitsWorkListJPanel.class.getName()).log(Level.SEVERE, null, ex);
+             }
+          
            // resetTextfield();
             
         }
@@ -170,6 +180,34 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
 
     private void btnManageTask2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTask2ActionPerformed
         // TODO add your handling code here:
+           int selectedRow=tbltasklist.getSelectedRow();
+        if (selectedRow>=0)
+        {
+            
+            WorkRequest en=(WorkRequest)tbltasklist.getValueAt(selectedRow,0);
+            en.setStatus("In Process Digital Marketing Team");
+         
+               try {
+                      SendEmail  smn;
+                   smn = new SendEmail(userProcessContainer,account,en,enterprise);
+                     CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+               userProcessContainer.add("SendEmail",smn);
+             cl.next(userProcessContainer);
+               } catch (IOException ex) {
+                   Logger.getLogger(socialmediaSpecialitsWorkListJPanel.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                
+        
+          
+           // resetTextfield();
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        }
+      
+        
     }//GEN-LAST:event_btnManageTask2ActionPerformed
 
 

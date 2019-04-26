@@ -3,6 +3,7 @@ package UserInterface.MarketingAnalystRole;
 import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Organization.digitalMarketingManagerOrganization;
 import Business.Organization.marketAnalystOrganization;
 import Business.Organization.marketingManagerOrganization;
 import Business.RegionNetwork.Network;
@@ -140,7 +141,10 @@ public class EvaluateRiskFactorsJPanel extends javax.swing.JPanel {
     public void SaveRiskAnalysis()
     {
         productRiskAnalysis productRiskAnalysis = new productRiskAnalysis();
-                
+        
+        
+        
+     //   productDetailWorkRequest pw=new productDetailWorkRequest();
        productRiskAnalysis.setProductDemand(Integer.valueOf(prodctdemand.getSelection().getActionCommand()));
        productRiskAnalysis.setMarketreach(Integer.valueOf(prodctdemand.getSelection().getActionCommand()));
        productRiskAnalysis.setInnovativeAspect(Integer.valueOf(prodctdemand.getSelection().getActionCommand()));
@@ -175,7 +179,7 @@ public class EvaluateRiskFactorsJPanel extends javax.swing.JPanel {
                     {
                             Organization org = null;
                             for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
-                                if (organization instanceof marketingManagerOrganization){
+                                if (organization instanceof digitalMarketingManagerOrganization){
                                     org = organization;
                                  //   pa.setPdwr(request);
                                     break;

@@ -28,7 +28,15 @@ public abstract class WorkRequest {
     private Date Duedate;
     private Employee  Assignto;
     private productDetailWorkRequest pdw; 
-    
+    private productRiskAnalysis pra;
+
+    public productRiskAnalysis getPra() {
+        return pra;
+    }
+
+    public void setPra(productRiskAnalysis pra) {
+        this.pra = pra;
+    }
     private ProducttwitterdataWorkrequest twr;
 
 //    public productRiskAnalysis getPra() {
