@@ -5,6 +5,7 @@
  */
 package UserInterface.ProductAnalystRole;
 
+import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.productAnalystOrganization;
@@ -31,12 +32,15 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
    //productManagerOrganization  organization;
   productAnalystOrganization  organization;
    Enterprise enterprise;
-    public productAnalystrequestlistJPanel(JPanel userProcessContainer,UserAccount account,Organization organization,Enterprise enterprise) {
+   DMEcosystem business;
+    public productAnalystrequestlistJPanel(JPanel userProcessContainer,UserAccount account,Organization organization,Enterprise enterprise,DMEcosystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.organization=(productAnalystOrganization)organization;
         this.enterprise=enterprise;
+        this.business=business;
+        
         populatestatusComboBox();
         populateRequestTable();
     }
@@ -62,8 +66,9 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
             row[3] = request.getDuedate();
          //   String result = ((productDetailWorkRequest) request).getTestResult();
            // row[3] = result == null ? "Waiting" : result;
-            
-            model.addRow(row);
+           if(request.getAssignto() == account.getEmployee() && (request.getStatus().equals("In Process Product Analyst") || request.getStatus().equals("Task Created"))) 
+                {model.addRow(row);}
+                
         }
     }
     /**
@@ -156,7 +161,7 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
             
             productDetailWorkRequest en=(productDetailWorkRequest)tbltasklist.getValueAt(selectedRow,0);
             en.setStatus("In Process Product Analyst");
-            ProductAnalystProductDetailsJpanel vp =new ProductAnalystProductDetailsJpanel(userProcessContainer,en);
+            ProductAnalystProductDetailsJpanel vp =new ProductAnalystProductDetailsJpanel(userProcessContainer,account,en,enterprise,business);
             userProcessContainer.add("productManagerViewTaskJpanel",vp);
             CardLayout cl=(CardLayout)userProcessContainer.getLayout();
             cl.next(userProcessContainer);

@@ -5,10 +5,13 @@
  */
 package UserInterface.MarketingAnalystRole;
 
+import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.digitalMarketingManagerOrganization;
 import Business.Organization.marketAnalystOrganization;
 import Business.UserAccount.UserAccount;
+import UserInterface.MarketingManagerRole.MarketingManagerworklistJPanel;
+import java.awt.CardLayout;
 import java.io.IOException;
 import javax.swing.JPanel;
 
@@ -26,13 +29,14 @@ public class MarketingAnalysWorkAreaJPanel extends javax.swing.JPanel {
    UserAccount account;
    marketAnalystOrganization  organization;
    Enterprise enterprise;
-    public MarketingAnalysWorkAreaJPanel(JPanel userProcessContainer,UserAccount account,marketAnalystOrganization  organization,Enterprise enterprise) throws IOException {
+      DMEcosystem business;
+    public MarketingAnalysWorkAreaJPanel(JPanel userProcessContainer,UserAccount account,marketAnalystOrganization  organization,Enterprise enterprise,DMEcosystem business) throws IOException {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.organization=organization;
         this.enterprise=enterprise;
-       
+        this.business=business;
 //      if(this.enterprise.getProfilePhoto() !=null)
 //      {
 //        if(this.enterprise.getProfilePhoto().length()>0)
@@ -51,22 +55,45 @@ public class MarketingAnalysWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnManageTask = new javax.swing.JButton();
+        lblenterpriselogo = new javax.swing.JLabel();
+
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1064, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 732, Short.MAX_VALUE)
-        );
+        btnManageTask.setBackground(new java.awt.Color(61, 99, 210));
+        btnManageTask.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnManageTask.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageTask.setText("Evaluate Risk");
+        btnManageTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageTaskActionPerformed(evt);
+            }
+        });
+        add(btnManageTask, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 290, 100));
+        add(lblenterpriselogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 570, 350));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTaskActionPerformed
+        // TODO add your handling code here:
+//
+//        productAnalystrequestlistJPanel smn=new productAnalystrequestlistJPanel(userProcessContainer,account,organization,enterprise);
+//        CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+//        userProcessContainer.add("productManagerViewTaskJpanel",smn);
+        //cl.next(userProcessContainer);
+        
+        
+        MarketAnalystworklistJpanel smn=new MarketAnalystworklistJpanel(userProcessContainer,account,organization,enterprise,business);
+        CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+        userProcessContainer.add("MarketAnalystworklistJpanel",smn);
+        cl.next(userProcessContainer);
+        
+    }//GEN-LAST:event_btnManageTaskActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageTask;
+    private javax.swing.JLabel lblenterpriselogo;
     // End of variables declaration//GEN-END:variables
 }

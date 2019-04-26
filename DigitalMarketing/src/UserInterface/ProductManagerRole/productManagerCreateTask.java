@@ -8,11 +8,13 @@ package UserInterface.ProductManagerRole;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Organization.marketAnalystOrganization;
 import Business.Organization.productAnalystOrganization;
 import Business.Organization.productManagerOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import Business.WorkQueue.productDetailWorkRequest;
+import Business.WorkQueue.productRiskAnalysis;
 import java.awt.CardLayout;
 //import java.sql.Date;
 import java.util.Date;
@@ -78,8 +80,8 @@ public class productManagerCreateTask extends javax.swing.JPanel {
         String Final=String.valueOf(duedate.substring(3,5))+"/"+ String.valueOf(duedate.substring(0,2))+"/"+ String.valueOf(duedate.substring(6,10) );
           
           
-       txtTaskID.setText(request.getTaskID());
-       txttitle.setText(request.getTitle());
+        txtTaskID.setText(request.getTaskID());
+        txttitle.setText(request.getTitle());
         txtdescription.setText(request.getDescription());
         ddlassignto.setSelectedItem(request.getAssignto());
         txtduedate.setValue(Final);
@@ -88,7 +90,7 @@ public class productManagerCreateTask extends javax.swing.JPanel {
 // request.set(txttitle.getText());
        // request.setTitle(txttitle.getText());
         //request.setTitle(txttitle.getText());
-        request.setSender(account);
+         request.setSender(account);
 //        request.setStatus("Task Created");
         
     
@@ -235,8 +237,11 @@ public class productManagerCreateTask extends javax.swing.JPanel {
            //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
            
            // String message = messageJTextField.getText();
-           CreateTask();
-           
+        CreateTask();
+        
+        
+        
+        
        } catch (ParseException ex) {
            JOptionPane.showMessageDialog(null, "Something went wrong..!!");
 // Logger.getLogger(productManagerCreateTask.class.getName()).log(Level.SEVERE, null, ex);
@@ -262,7 +267,7 @@ public class productManagerCreateTask extends javax.swing.JPanel {
        // request.setTitle(txttitle.getText());
         //request.setTitle(txttitle.getText());
         request.setSender(account);
-        
+        request.setPdw(request);
         if (!isupdate)
         {
             request.setStatus("Task Created");
@@ -275,19 +280,21 @@ public class productManagerCreateTask extends javax.swing.JPanel {
         }
         if (org!=null){
             org.getWorkQueue().getWorkRequestList().add(request);
+           // org.getWorkQueue().getProductDetailWorkRequestList().add(request);
             account.getWorkQueue().getWorkRequestList().add(request);
+             
         }
         
         
         
-        JOptionPane.showMessageDialog(null, "Request Created successfully..!!");
+            JOptionPane.showMessageDialog(null, "Request Created successfully..!!");
      
             
             
         }//request.setStatus(ddlstatus.getSelectedItem().toString());
         else
         {
-        JOptionPane.showMessageDialog(null, "Request Updated successfully..!!");
+            JOptionPane.showMessageDialog(null, "Request Updated successfully..!!");
      
         
         }

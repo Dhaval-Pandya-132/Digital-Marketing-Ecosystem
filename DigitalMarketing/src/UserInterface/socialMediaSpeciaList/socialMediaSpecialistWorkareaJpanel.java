@@ -5,10 +5,18 @@
  */
 package UserInterface.socialMediaSpeciaList;
 
+import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 import Business.Organization.marketAnalystOrganization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -23,24 +31,35 @@ public class socialMediaSpecialistWorkareaJpanel extends javax.swing.JPanel {
     
    JPanel userProcessContainer;
    UserAccount account;
-   marketAnalystOrganization  organization;
+   Organization  organization;
    Enterprise enterprise;
-    public socialMediaSpecialistWorkareaJpanel(JPanel userProcessContainer,UserAccount account,marketAnalystOrganization  organization,Enterprise enterprise) throws IOException {
+   DMEcosystem business;
+public socialMediaSpecialistWorkareaJpanel(JPanel userProcessContainer,UserAccount account,Organization  organization,Enterprise enterprise,DMEcosystem business) throws IOException {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.organization=organization;
         this.enterprise=enterprise;
+
        
-//      if(this.enterprise.getProfilePhoto() !=null)
-//      {
-//        if(this.enterprise.getProfilePhoto().length()>0)
-//        {
-//            loadProfilepic();
-//        }
-//      }
+      if(this.enterprise.getProfilePhoto() !=null)
+      {
+        if(this.enterprise.getProfilePhoto().length()>0)
+        {
+            loadProfilepic();
+        }
+      }
     }
 
+
+  public void loadProfilepic() throws IOException
+    {
+            BufferedImage img=ImageIO.read(new File(enterprise.getProfilePhoto()));
+            Image im=img;
+            ImageIcon ic =new ImageIcon(im.getScaledInstance(360, 150, Image.SCALE_DEFAULT));
+            lblenterpriselogo.setIcon(ic);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,22 +69,38 @@ public class socialMediaSpecialistWorkareaJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnManageTask = new javax.swing.JButton();
+        lblenterpriselogo = new javax.swing.JLabel();
+
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 982, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
-        );
+        btnManageTask.setBackground(new java.awt.Color(61, 99, 210));
+        btnManageTask.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnManageTask.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageTask.setText("Manage Task List");
+        btnManageTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageTaskActionPerformed(evt);
+            }
+        });
+        add(btnManageTask, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 290, 100));
+        add(lblenterpriselogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 570, 350));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTaskActionPerformed
+        // TODO add your handling code here:
+
+        socialmediaSpecialitsWorkListJPanel smn=new socialmediaSpecialitsWorkListJPanel( userProcessContainer, account,  organization, enterprise,business);
+        CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+        userProcessContainer.add("socialmediaSpecialitsWorkListJPanel",smn);
+        cl.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageTaskActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageTask;
+    private javax.swing.JLabel lblenterpriselogo;
     // End of variables declaration//GEN-END:variables
 }

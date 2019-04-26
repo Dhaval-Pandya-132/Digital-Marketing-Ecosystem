@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.Organization.productAnalystOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
+import Business.WorkQueue.productDetailWorkRequest;
 import UserInterface.SystemAdminWorkArea.ViewEnterpriseDetailsJPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -123,7 +124,7 @@ public class productManagerViewTaskJpanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,java.lang.Boolean.class
+                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -146,6 +147,7 @@ public class productManagerViewTaskJpanel extends javax.swing.JPanel {
         for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
            
                     Object[] row = new Object[5];
+                   // row[0] = request;
                     row[0] = request;
                     row[1] = request.getStatus();
                     row[2] = request.getAssignto().getName();
@@ -153,14 +155,14 @@ public class productManagerViewTaskJpanel extends javax.swing.JPanel {
                     row[4] = formatter.format(request.getDuedate()).equals(today) && !request.getStatus().equals("Completed")  ? true:false;
                  //   String result = ((productDetailWorkRequest) request).getTestResult();
                    // row[3] = result == null ? "Waiting" : result;
-
+                      
                     model.addRow(row);
             
             
         }
         
         tbltasklist.removeColumn (tbltasklist.getColumnModel().getColumn(4));
-    
+        
     
     
     }
