@@ -303,7 +303,7 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
         String Path =lblfilepath.getText();
         Network Network = (Network)networkJComboBox.getSelectedItem();
         Integer TotalEmployee =Integer.valueOf(txtTotalEmployee.getText());
-        
+        String type =enterpriseTypeJComboBox.getSelectedItem().toString();
 //        en.setNoofEmployee(TotalEmployee);
 //        en.setEnterpriseName(Name);
 //        en.setAddress(Name);

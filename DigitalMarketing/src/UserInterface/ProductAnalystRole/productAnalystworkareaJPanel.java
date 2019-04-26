@@ -5,6 +5,7 @@
  */
 package UserInterface.ProductAnalystRole;
 
+import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.productAnalystOrganization;
@@ -32,14 +33,16 @@ public class productAnalystworkareaJPanel extends javax.swing.JPanel {
    UserAccount account;
    Organization  organization;
    Enterprise enterprise;
-    
-    public productAnalystworkareaJPanel(JPanel userProcessContainer,UserAccount account,productAnalystOrganization  organization,Enterprise enterprise) throws IOException {
+   DMEcosystem business;
+    public productAnalystworkareaJPanel(JPanel userProcessContainer,UserAccount account,productAnalystOrganization  organization,Enterprise enterprise,DMEcosystem business) throws IOException {
         initComponents();
           this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.organization=organization;
         this.enterprise=enterprise;
-       
+        this.business=business;
+        
+        
       if(this.enterprise.getProfilePhoto() !=null)
       {
         if(this.enterprise.getProfilePhoto().length()>0)
@@ -92,7 +95,7 @@ public class productAnalystworkareaJPanel extends javax.swing.JPanel {
     private void btnManageTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTaskActionPerformed
         // TODO add your handling code here:
 
-        productAnalystrequestlistJPanel smn=new productAnalystrequestlistJPanel(userProcessContainer,account,organization,enterprise);
+        productAnalystrequestlistJPanel smn=new productAnalystrequestlistJPanel(userProcessContainer,account,organization,enterprise,business);
         CardLayout cl=(CardLayout)userProcessContainer.getLayout();
         userProcessContainer.add("productManagerViewTaskJpanel",smn);
         cl.next(userProcessContainer);

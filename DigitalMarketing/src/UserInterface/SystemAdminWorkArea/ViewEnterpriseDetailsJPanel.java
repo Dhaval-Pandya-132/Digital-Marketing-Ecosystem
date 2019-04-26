@@ -84,10 +84,10 @@ public class ViewEnterpriseDetailsJPanel extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        ddlNetwork = new javax.swing.JComboBox<String>();
+        ddlNetwork = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaddress = new javax.swing.JTextArea();
-        ddlenterprisetype = new javax.swing.JComboBox<String>();
+        ddlenterprisetype = new javax.swing.JComboBox<>();
         txtTotalEmployee = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -112,7 +112,7 @@ public class ViewEnterpriseDetailsJPanel extends javax.swing.JPanel {
         });
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 220, 30));
 
-        ddlNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ddlNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(ddlNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 220, -1));
 
         txtaddress.setColumns(20);
@@ -121,7 +121,7 @@ public class ViewEnterpriseDetailsJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 220, 50));
 
-        ddlenterprisetype.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ddlenterprisetype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ddlenterprisetype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ddlenterprisetypeActionPerformed(evt);
@@ -188,7 +188,7 @@ public class ViewEnterpriseDetailsJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 105, 80));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 105, 80));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -299,7 +299,7 @@ public class ViewEnterpriseDetailsJPanel extends javax.swing.JPanel {
                 panel.PopulateTable();
             }
         }
-//        mainJpanel.remove(this);
+        mainJpanel.remove(this);
 //        CardLayout layout = (CardLayout) mainJpanel.getLayout();
 //        layout.previous(mainJpanel);
     }//GEN-LAST:event_btnBackActionPerformed
