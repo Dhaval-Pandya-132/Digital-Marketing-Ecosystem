@@ -248,10 +248,10 @@ public class ManageEnterpriseDetailsJPanel extends javax.swing.JPanel {
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
         
-         if(txtName.getText().equals("")||txtTotalEmployee.getText().equals("")||txtaddress.getText().equals("")||networkJComboBox.getSelectedItem().toString().equals("")||enterpriseTypeJComboBox.getSelectedItem().toString().equals(""))
+         if(txtName.getText().equals("")||txtTotalEmployee.getText().equals("")||txtaddress.getText().equals("")||networkJComboBox.getSelectedItem().toString().equals("")||enterpriseTypeJComboBox.getSelectedItem().toString().equals("")||lblfilepath.getText().equals(""))
         {
            JOptionPane.showMessageDialog(null, "One or more fields are empty");
-            
+            return;
         }
 
          

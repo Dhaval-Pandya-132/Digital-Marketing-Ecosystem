@@ -223,18 +223,23 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-       int selectedRow=organizationJTable.getSelectedRow();
+          int selectedRow=organizationJTable.getSelectedRow();
         if (selectedRow>=0)
         {
-             int selectionButton = JOptionPane.YES_NO_OPTION;
+            int selectionButton = JOptionPane.YES_NO_OPTION;
             int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to delete??","Warning",selectionButton);
-            if(selectionResult == JOptionPane.YES_OPTION){
+            if(selectionResult == JOptionPane.YES_OPTION)
+            {
         
-            Employee e=(Employee)organizationJTable.getValueAt(selectedRow,0);
-            ed.removeEmployee(e);
-            populateTable();    
-           // resetTextfield();
-            }
+                Employee e=(Employee)organizationJTable.getValueAt(selectedRow,0);
+                for (Organization organization :organizationDir.getOrganizationList())
+                {
+                    organization.getEmployeeDirectory().removeEmployee(e);
+                     
+                        populateTable();    
+              
+                }
+        }
         }
         else
         {

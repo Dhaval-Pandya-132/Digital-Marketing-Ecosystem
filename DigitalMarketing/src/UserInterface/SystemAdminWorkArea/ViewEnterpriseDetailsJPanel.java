@@ -205,11 +205,13 @@ public class ViewEnterpriseDetailsJPanel extends javax.swing.JPanel {
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
-        btnsave.setEnabled(true);
+         btnsave.setEnabled(true);
         
         txtName.setEditable(true);
         txtTotalEmployee.setEditable(true);
         txtaddress.setEditable(true);
+          ddlNetwork.setEnabled(true);
+       ddlenterprisetype.setEnabled(true);
         
     }//GEN-LAST:event_btnupdateActionPerformed
        public void SaveEnterprise()
@@ -252,10 +254,13 @@ public class ViewEnterpriseDetailsJPanel extends javax.swing.JPanel {
        }
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-           btnsave.setEnabled(false);
+            btnsave.setEnabled(false);
         txtName.setEditable(false);
         txtTotalEmployee.setEditable(false);
         txtaddress.setEditable(false);
+       ddlNetwork.setEnabled(false);
+       ddlenterprisetype.setEnabled(false);
+        
         
          if(txtName.getText().equals("")||txtTotalEmployee.getText().equals("")||txtaddress.getText().equals("")||ddlNetwork.getSelectedItem().toString().equals("")||ddlenterprisetype.getSelectedItem().toString().equals(""))
         {

@@ -37,7 +37,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         jScrollPane1.setBorder(BorderFactory.createEmptyBorder());
         this.mainJpanel=jp;
        // this.SystemAdminWorkAreaJPanel = SAW;
-        PopulateTable();
+        PopulateTable("");
     }
 
     /**
@@ -57,6 +57,9 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         tblNetworkList = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -121,7 +124,7 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 112, 41));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 112, 41));
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png"))); // NOI18N
@@ -142,6 +145,26 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 105, 76));
+
+        btnSearch.setBackground(new java.awt.Color(0, 153, 255));
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 110, 40));
+
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 190, -1));
+
+        jLabel3.setText("Search Keyword: ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 32));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
@@ -211,6 +234,15 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        PopulateTable(txtSearch.getText());
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
   
    public boolean checkElement()
     {
@@ -241,10 +273,10 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
         {
             rn.setName(Name);
         }
-        PopulateTable();
+        PopulateTable("");
     }
 
-    public void PopulateTable()
+    public void PopulateTable(String text)
     {
       
            DefaultTableModel DTM=(DefaultTableModel)tblNetworkList.getModel();
@@ -253,7 +285,11 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
            {
                 Object[] row  =new Object[1];
                 row[0]=ps;
-                DTM.addRow(row);
+                if(ps.toString().contains(text)|| text=="")
+                {
+                        DTM.addRow(row); 
+                }
+           
            
            }
        
@@ -264,10 +300,13 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblNetworkList;
     private javax.swing.JTextField txtNetworkName;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

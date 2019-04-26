@@ -1253,9 +1253,14 @@ public class EvaluateRiskFactorsJPanel extends javax.swing.JPanel {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
         //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-        
-        SaveRiskAnalysis();
+        try {SaveRiskAnalysis();
         JOptionPane.showMessageDialog(null, "Risk Analysis Saved successfully");
+        }catch(Exception E){
+        
+        JOptionPane.showMessageDialog(null, "Please Insert Valid Input");
+        }
+        
+        
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered

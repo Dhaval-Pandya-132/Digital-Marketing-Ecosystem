@@ -232,7 +232,13 @@ public class productManagerCreateTask extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-       try {
+      if(txtTaskID.getText().equals("")||txtdescription.getText().equals("")||txtduedate.getText().equals("")|| txttitle.getText().equals(""))
+        {
+           JOptionPane.showMessageDialog(null, "One or more fields are empty..");
+           return;
+            
+        }
+        try {
            // TODO add your handling code here:
            //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
            
