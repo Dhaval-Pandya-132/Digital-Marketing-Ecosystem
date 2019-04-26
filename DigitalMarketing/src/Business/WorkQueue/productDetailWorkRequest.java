@@ -25,17 +25,17 @@ public class productDetailWorkRequest extends WorkRequest {
    private Date  ManufectureDate; 
    private Date  Expiredate; 
    private String  FinalRemark; 
-   private productRiskAnalysis pra;
+  // private productRiskAnalysis pra;
  
    //private String  ManufectureDate; 
 
-    public productRiskAnalysis getPra() {
-        return pra;
-    }
-
-    public void setPra(productRiskAnalysis pra) {
-        this.pra = pra;
-    }
+//    public productRiskAnalysis getPra() {
+//        return pra;
+//    }
+//
+//    public void setPra(productRiskAnalysis pra) {
+//        this.pra = pra;
+//    }
 
 
     public void setProductName(String productName) {

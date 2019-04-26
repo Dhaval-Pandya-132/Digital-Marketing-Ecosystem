@@ -12,7 +12,12 @@ import Business.Organization.marketAnalystOrganization;
 import Business.UserAccount.UserAccount;
 import UserInterface.MarketingManagerRole.MarketingManagerworklistJPanel;
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -37,15 +42,24 @@ public class MarketingAnalysWorkAreaJPanel extends javax.swing.JPanel {
         this.organization=organization;
         this.enterprise=enterprise;
         this.business=business;
-//      if(this.enterprise.getProfilePhoto() !=null)
-//      {
-//        if(this.enterprise.getProfilePhoto().length()>0)
-//        {
-//            loadProfilepic();
-//        }
-//      }
+      if(this.enterprise.getProfilePhoto() !=null)
+      {
+        if(this.enterprise.getProfilePhoto().length()>0)
+        {
+            loadProfilepic();
+        }
+      }
     }
 
+    
+     public void loadProfilepic() throws IOException
+    {
+            BufferedImage img=ImageIO.read(new File(enterprise.getProfilePhoto()));
+            Image im=img;
+            ImageIcon ic =new ImageIcon(im.getScaledInstance(360, 150, Image.SCALE_DEFAULT));
+            lblenterpriselogo.setIcon(ic);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

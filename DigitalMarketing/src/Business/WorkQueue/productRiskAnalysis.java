@@ -5,12 +5,14 @@
  */
 package Business.WorkQueue;
 
+import Business.DMEcosystem;
+
 /**
  *
  * @author dhava
  */
-public class productRiskAnalysis extends WorkRequest{
-   // productDetailWorkRequest pdwr;
+public class productRiskAnalysis {
+    static productRiskAnalysis pdwr;
     int productDemand ;
     int Marketreach ;
     int InnovativeAspect ;
@@ -34,6 +36,25 @@ public class productRiskAnalysis extends WorkRequest{
     String firstmovercomment ;
     String uspcomment ;
     String Finanacecrunchcomment ;
+
+   public static productRiskAnalysis getInstance(){
+        if(pdwr==null){
+            pdwr=new productRiskAnalysis();
+        }
+        return pdwr;
+    }
+
+    public void setPdwr(productRiskAnalysis pdwr) {
+        this.pdwr = pdwr;
+    }
+
+    public int getRisk() {
+        return Risk;
+    }
+
+    public void setRisk(int Risk) {
+        this.Risk = Risk;
+    }
     
     
     
