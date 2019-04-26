@@ -1,7 +1,17 @@
 package UserInterface.ProductAnalystRole;
 
 
+import Business.DMEcosystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Organization.marketAnalystOrganization;
+import Business.Organization.marketingManagerOrganization;
+import Business.Organization.productAnalystOrganization;
+import Business.RegionNetwork.Network;
+import Business.Role.marketingManagerRole;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.productDetailWorkRequest;
+import Business.WorkQueue.productRiskAnalysis;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -33,13 +43,19 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
      JPanel userProcessContainer;
      productDetailWorkRequest request;
       ArrayList<String> FilePath =new ArrayList<String>();
+       DMEcosystem business;
+       Enterprise enterprise;
+       UserAccount account;
     /**
      * Creates new form ProductDetails
      */
-    public ProductAnalystProductDetailsJpanel(JPanel userProcessContainer,productDetailWorkRequest request) {
+    public ProductAnalystProductDetailsJpanel(JPanel userProcessContainer,UserAccount account,productDetailWorkRequest request,Enterprise enterprise, DMEcosystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.request=request;
+        this.business=business;
+        this.enterprise=enterprise;
+        this.account=account;
          txtExpireddate.setColumns(20);
          txtmanufecturedate.setColumns(20);
         //panel.add(tf);
@@ -140,7 +156,7 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
         jLabel14.setText("Retail Price :");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 120, 20));
 
-        btnSelectphoto.setText("Select Photo");
+        btnSelectphoto.setText("Select Photos");
         btnSelectphoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectphotoActionPerformed(evt);
@@ -227,7 +243,7 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
                 FilePath.add(jfc.getSelectedFiles()[i].getPath()) ;
              //   filepath=jfc.getSelectedFile().getPath();
                // lblfilepath.setText(FileName);
-                break;
+               // break;
             }
             i--;
         }
@@ -268,7 +284,51 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
        request.setExpiredate(ExpiredDate);
        request.setFinalRemark(finalremark);
        request.setProductImages(FilePath);
-       request.setStatus("Completed by Product Analyst");
+       request.setStatus("Assign to Market Analysis");
+       
+    //   productRiskAnalysis pa=new productRiskAnalysis();
+        for (Network N : business.getNetworkList()) {
+            
+            if (N.getName().equals(enterprise.getNetwork()))
+            {
+                for (Enterprise e   : N.getEpd().getEnterpriseList()) {
+                    if (e.getEnterpriseType().getValue().equals("MarketAnlysis"))
+                    {
+                            Organization org = null;
+                            for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
+                                if (organization instanceof marketingManagerOrganization){
+                                    org = organization;
+                                 //   pa.setPdwr(request);
+                                    break;
+                                } 
+                            }
+                            if (org!=null){
+                                org.getWorkQueue().getWorkRequestList().add(request);
+                              //  org.getWorkQueue().getProductDetailWorkRequestList().add(request);
+                                account.getWorkQueue().getWorkRequestList().add(request);
+                               // account.getWorkQueue().getWorkRequestList().add(request);
+                            }
+                    }
+                }
+            
+            }
+            
+        }
+       
+//       Organization org = null;
+//        for (Organization organization : business.getNetworkList().getOrganizationDirectory().getOrganizationList()){
+//            if (organization instanceof marketAnalystOrganization){
+//                org = organization;
+//                break;
+//            }
+//        }
+//        if (org!=null){
+//            org.getWorkQueue().getWorkRequestList().add(request);
+//            account.getWorkQueue().getWorkRequestList().add(request);
+//        }
+        
+       
+       
     
     }
     
