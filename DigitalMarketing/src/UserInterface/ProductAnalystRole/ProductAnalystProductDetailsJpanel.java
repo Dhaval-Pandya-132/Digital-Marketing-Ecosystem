@@ -184,6 +184,11 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
     private void btnSubmitProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitProductDetailsActionPerformed
         // TODO add your handling code here:
         //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+          if(txtName.getText().equals("")||txtdurability.getText().equals("")||txtmarket.getText().equals("")||txtExpireddate.getText().equals("")||txtfeatures.getText().equals("")||txtfinalremark.getText().equals("")||txtlastrevenue.getText().equals("")||txtmanufecturedate.getText().equals("")||txtretailprice.getText().equals(""))
+        {
+           JOptionPane.showMessageDialog(null,"One or more fields are empty!!"); 
+           return;
+        }
         if(! CheckNumber("Retail Price Respirate", txtretailprice.getText()) 
            || !CheckNumber("Last Revenue", txtlastrevenue.getText())
            )

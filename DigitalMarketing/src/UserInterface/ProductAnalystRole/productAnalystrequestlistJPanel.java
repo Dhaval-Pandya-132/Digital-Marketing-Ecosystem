@@ -42,7 +42,7 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
         this.business=business;
         
         populatestatusComboBox();
-        populateRequestTable();
+        populateRequestTable("");
     }
 
     public void populatestatusComboBox(){
@@ -54,7 +54,7 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
        
     }  
 
-     public void populateRequestTable(){
+     public void populateRequestTable(String text){
         DefaultTableModel model = (DefaultTableModel) tbltasklist.getModel();
         
         model.setRowCount(0);
@@ -66,7 +66,7 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
             row[3] = request.getDuedate();
          //   String result = ((productDetailWorkRequest) request).getTestResult();
            // row[3] = result == null ? "Waiting" : result;
-           if(request.getAssignto() == account.getEmployee() && (request.getStatus().equals("In Process Product Analyst") || request.getStatus().equals("Task Created"))) 
+           if(request.getAssignto() == account.getEmployee() && (request.getStatus().equals("In Process Product Analyst") || request.getStatus().equals("Task Created")||request.toString().contains(text) ||  request.getStatus().toString().contains(text) || request.getAssignto().toString().contains(text) || text=="")) 
                 {model.addRow(row);}
                 
         }
@@ -87,6 +87,9 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
         ddlstatus = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -150,6 +153,19 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 105, 76));
+
+        jLabel9.setText("Enter Keyword:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 120, 30));
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 172, 240, 30));
+
+        searchBtn.setBackground(new java.awt.Color(0, 153, 255));
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 170, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnproceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnproceedActionPerformed
@@ -194,6 +210,12 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+
+        populateRequestTable(txtSearch.getText());
+    }//GEN-LAST:event_searchBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -201,7 +223,10 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox ddlstatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JTable tbltasklist;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
