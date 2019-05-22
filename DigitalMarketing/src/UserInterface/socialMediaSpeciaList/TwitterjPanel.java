@@ -44,16 +44,16 @@ public class TwitterjPanel extends javax.swing.JPanel {
         this.account=account;
         this.request=request;
         this.enterprise=enterprise;
-          consumerKeyStr = enterprise.getConsumerkey();//"zpGL6kU6RKXoHE7MYkX1hsS5u";
+          consumerKeyStr = enterprise.getConsumerkey();
  
         //Your Twitter App's Consumer Secret
-         consumerSecretStr = enterprise.getConsumerSecretkey();//"KtubqX7OqHxZm79F9CeeeU9z7EXCaKOYtAVFIrflsgcr1wSFUL";
+         consumerSecretStr = enterprise.getConsumerSecretkey();
  
         //Your Twitter Access Token
-         accessTokenStr = enterprise.getAccessToken();//"1114998612692545550-TRf6N9YGy2SrD8cE7dlriQSCLjErCL";
+         accessTokenStr = enterprise.getAccessToken();
  
         //Your Twitter Access Token Secret
-         accessTokenSecretStr = enterprise.getAccessTokenSecret();//"5687xOyIqQzw3CHes45fvKIOMEgACoXmjcRWZLGSnqa1m";
+         accessTokenSecretStr = enterprise.getAccessTokenSecret();
             
         populateRequestTable();
     }
