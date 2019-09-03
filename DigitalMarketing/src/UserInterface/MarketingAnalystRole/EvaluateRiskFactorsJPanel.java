@@ -11,6 +11,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import Business.WorkQueue.productDetailWorkRequest;
 import Business.WorkQueue.productRiskAnalysis;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -1254,10 +1255,10 @@ public class EvaluateRiskFactorsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         try {SaveRiskAnalysis();
-        JOptionPane.showMessageDialog(null, "Risk Analysis Saved successfully");
+        JOptionPane.showMessageDialog(null, "Risk Analysis Saved successfully and Assign to Digital Marketing Enterprise");
         }catch(Exception E){
         
-        JOptionPane.showMessageDialog(null, "Please Insert Valid Input");
+        JOptionPane.showMessageDialog(null, "Please Insert all required Input");
         }
         
         
@@ -1286,9 +1287,9 @@ public class EvaluateRiskFactorsJPanel extends javax.swing.JPanel {
                 //                panel.PopulateTable();
                 //            }
             //        }
-//        userProcessContainer.remove(this);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btngetproductdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngetproductdetailsActionPerformed

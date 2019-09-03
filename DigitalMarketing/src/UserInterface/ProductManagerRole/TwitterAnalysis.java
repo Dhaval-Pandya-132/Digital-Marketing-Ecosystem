@@ -7,7 +7,15 @@ package UserInterface.ProductManagerRole;
 
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import twitter4j.Status;
@@ -28,8 +36,8 @@ public class TwitterAnalysis extends javax.swing.JPanel {
     
      JPanel userProcessContainer;
    UserAccount account;
-   private javax.swing.JTable tbltasklist;
-    private javax.swing.JScrollPane jScrollPane1;
+   //private javax.swing.JTable tbltasklist;
+  //  private javax.swing.JScrollPane jScrollPane1;
      String consumerKeyStr = "";
     String consumerSecretStr ="";
     String accessTokenStr = "";
@@ -40,47 +48,48 @@ public class TwitterAnalysis extends javax.swing.JPanel {
           this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.enterprise=enterprise;
-        jScrollPane1 = new javax.swing.JScrollPane();
+       // jScrollPane1 = new javax.swing.JScrollPane();
         this.enterprise=enterprise;
         
-         consumerKeyStr = enterprise.getConsumerkey();//"zpGL6kU6RKXoHE7MYkX1hsS5u";
- 
-          //Your Twitter App's Consumer Secret
-         consumerSecretStr = enterprise.getConsumerSecretkey();//"KtubqX7OqHxZm79F9CeeeU9z7EXCaKOYtAVFIrflsgcr1wSFUL";
- 
-        //Your Twitter Access Token
-         accessTokenStr = enterprise.getAccessToken();//"1114998612692545550-TRf6N9YGy2SrD8cE7dlriQSCLjErCL";
- 
-        //Your Twitter Access Token Secret
-         accessTokenSecretStr = enterprise.getAccessTokenSecret();//"5687xOyIqQzw3CHes45fvKIOMEgACoXmjcRWZLGSnqa1m";
+//         consumerKeyStr = enterprise.getConsumerkey();//"zpGL6kU6RKXoHE7MYkX1hsS5u";
+// 
+//          //Your Twitter App's Consumer Secret
+//         consumerSecretStr = enterprise.getConsumerSecretkey();//"KtubqX7OqHxZm79F9CeeeU9z7EXCaKOYtAVFIrflsgcr1wSFUL";
+// 
+//        //Your Twitter Access Token
+//         accessTokenStr = enterprise.getAccessToken();//"1114998612692545550-TRf6N9YGy2SrD8cE7dlriQSCLjErCL";
+// 
+//        //Your Twitter Access Token Secret
+//         accessTokenSecretStr = enterprise.getAccessTokenSecret();//"5687xOyIqQzw3CHes45fvKIOMEgACoXmjcRWZLGSnqa1m";
          populateRequestTable();
     }
 
     
     public void populateRequestTable() throws TwitterException{
-        DefaultTableModel model = (DefaultTableModel) tbltweets.getModel();
-             Twitter twitter = new TwitterFactory().getInstance();
-
-			twitter.setOAuthConsumer(consumerKeyStr, consumerSecretStr);
-			AccessToken accessToken = new AccessToken(accessTokenStr,
-					accessTokenSecretStr);
-
-			twitter.setOAuthAccessToken(accessToken);
+                    DefaultTableModel model = (DefaultTableModel) tbltasklist.getModel();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
         model.setRowCount(0);
-        List<Status> statuses = twitter.getHomeTimeline(); 
-      //  for (Organization o :enterprise.getOrganizationDirectory().getOrganizationList()) {
- 
-         for ( Status s :statuses) {
-              Object[] row = new Object[4];
-                    row[0] = s.getText();
-                    row[1] = s.getRetweetCount();
-                     model.addRow(row);
-        }
-
-          //  row[1] = ()request.;
-          //  row[2] = o.;
-          //  row[3] = request.getDuedate();
-                
+        Date dt =new Date();
+        String today=formatter.format(dt);
+        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
+           
+                    Object[] row = new Object[5];
+                   // row[0] = request;
+                    row[0] = request.getTaskID();
+                    row[1] = request;
+                    row[2] = request.getStatus();
+                    row[3] = request.getPra()== null? 0 :request.getPra().getRisk();
+//                    row[3] = formatter.format(request.getDuedate());
+//                    row[4] = formatter.format(request.getDuedate()).equals(today) && !request.getStatus().equals("Completed")  ? true:false;
+                 //   String result = ((productDetailWorkRequest) request).getTestResult();
+                   // row[3] = result == null ? "Waiting" : result;
+                  
+                  if (request.getStatus().equals("In Process Digital Marketing Team") || request.getStatus().equals("Completed By Digital Marketing"))
+                  {
+                    model.addRow(row);
+                  }
+            
+        }   
              
       
    }
@@ -95,57 +104,160 @@ public class TwitterAnalysis extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbltweets = new javax.swing.JTable();
+        tbltasklist = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btnDashboard = new javax.swing.JButton();
+        btnManageTask = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tbltweets.setModel(new javax.swing.table.DefaultTableModel(
+        tbltasklist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tweet", "RetweetCount", "Comment", "Sentiments"
+                "TaskID", "Task Title", "task Status", "Risk Analysis %"
             }
-        ));
-        jScrollPane2.setViewportView(tbltweets);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbltasklist);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 218, 600, 280));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Twitter Sentiment Analysis");
+        jLabel1.setText("Task Analysis");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 133, 213, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(59, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(92, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel1)
-                .addContainerGap(546, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(185, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(185, Short.MAX_VALUE)))
-        );
+        btnDashboard.setBackground(new java.awt.Color(61, 99, 210));
+        btnDashboard.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        btnDashboard.setText("Tweet Summary");
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardActionPerformed(evt);
+            }
+        });
+        add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 290, 100));
+
+        btnManageTask.setBackground(new java.awt.Color(61, 99, 210));
+        btnManageTask.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnManageTask.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageTask.setText("Email Summary");
+        btnManageTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageTaskActionPerformed(evt);
+            }
+        });
+        add(btnManageTask, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 290, 100));
+
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png"))); // NOI18N
+        btnBack.setToolTipText("Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnBack.setBorderPainted(false);
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
+        });
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 105, 76));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        
+            // TODO add your handling code here:
+          int selectedRow=tbltasklist.getSelectedRow();
+        if (selectedRow>=0)
+        {
+        
+            WorkRequest request=(WorkRequest)tbltasklist.getValueAt(selectedRow,1);
+            TweetSummaryJpanel smn=new TweetSummaryJpanel(userProcessContainer,account,enterprise,request);
+            CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+            userProcessContainer.add("TweetSummaryJpanel",smn);
+            cl.next(userProcessContainer);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        }
+        
+
+    }//GEN-LAST:event_btnDashboardActionPerformed
+
+    private void btnManageTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTaskActionPerformed
+        // TODO add your handling code here:
+//
+
+   // TODO add your handling code here:
+          int selectedRow=tbltasklist.getSelectedRow();
+        if (selectedRow>=0)
+        {
+        
+            WorkRequest request=(WorkRequest)tbltasklist.getValueAt(selectedRow,1);
+            EmailSummaryJpanel smn=new EmailSummaryJpanel(userProcessContainer,account,enterprise,request);
+            CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+            userProcessContainer.add("EmailSummaryJpanel",smn);
+            cl.next(userProcessContainer);
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        }
+        
+
+
+//        productManagerViewTaskJpanel smn=new productManagerViewTaskJpanel(userProcessContainer,account,enterprise);
+//        CardLayout cl=(CardLayout)userProcessContainer.getLayout();
+//        userProcessContainer.add("productManagerViewTaskJpanel",smn);
+//        cl.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageTaskActionPerformed
+
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        // TODO add your handling code here:
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px2.png")));
+        btnBack.setBorderPainted(false);
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        // TODO add your handling code here:
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png")));
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnManageTask;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tbltweets;
+    private javax.swing.JTable tbltasklist;
     // End of variables declaration//GEN-END:variables
 }

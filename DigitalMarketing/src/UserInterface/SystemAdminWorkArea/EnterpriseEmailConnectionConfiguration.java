@@ -4,10 +4,15 @@ import Business.DMEcosystem;
 import Business.Enterprise.Enterprise;
 import java.awt.CardLayout;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -30,6 +35,10 @@ public class EnterpriseEmailConnectionConfiguration extends javax.swing.JPanel {
      private DMEcosystem system;
      private    Enterprise E;
       String regexEmail = "^[A-Za-z0-9]+[A-Za-z0-9+_]+@[A-Za-z0-9.-]+$";
+      
+        Properties emailProperties;
+	Session mailSession;
+	MimeMessage emailMessage;
     // String regex = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[#]).{8,10})";
    
      //EnterpriseEmailConnectionConfiguration ec = new EnterpriseEmailConnectionConfiguration(userProcessContainer,system,E);
@@ -132,25 +141,61 @@ public class EnterpriseEmailConnectionConfiguration extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
+    
+    public void ConnectGmail() throws MessagingException
+    {
+            String emailPort = txtPort.getText();//gmail's smtp port
+
+		emailProperties = System.getProperties();
+		emailProperties.put("mail.smtp.port", emailPort);
+		emailProperties.put("mail.smtp.auth", "true");
+		emailProperties.put("mail.smtp.starttls.enable", "true");
+                
+		mailSession = Session.getDefaultInstance(emailProperties, null);
+		emailMessage = new MimeMessage(mailSession);
+
+                String emailHost = txtHost.getText();
+		String fromUser = txtSenderEmailAdd1.getText();//just the id alone without @gmail.com
+		String fromUserEmailPassword = String.valueOf(txtPassword.getPassword());
+
+		
+          try {
+              Transport transport;
+              transport = mailSession.getTransport("smtp");
+              transport.connect(emailHost, fromUser, fromUserEmailPassword);
+          } catch (NoSuchProviderException ex) {
+              Logger.getLogger(EnterpriseEmailConnectionConfiguration.class.getName()).log(Level.SEVERE, null, ex);
+          }
+
+		
+                
+    
+    }
+    
+    
+    
     private void btnTestConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestConnectionActionPerformed
         // TODO add your handling code here:
              try {
-             String senderEmail;
-             senderEmail = txtSenderEmailAdd1.getText();
-             String password;
-             password = String.valueOf(txtPassword.getPassword());
-            String host = txtHost.getText();
-            // String host = "smtp.gmail.com";
-             String port = txtPort.getText();
-            
-            Properties props = new Properties();
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.host", host);
-            props.put("mail.smtp.port", port);
-            props.put("mail.smtp.auth", "true");
-            Session mailSession = Session.getDefaultInstance(props, null);
-            Transport transport=mailSession.getTransport("smtp");
-            transport.connect(host, senderEmail, password);
+//             String senderEmail;
+//             senderEmail = txtSenderEmailAdd1.getText();
+//             String password;
+//             password = String.valueOf(txtPassword.getPassword());
+//            String host = txtHost.getText();
+//            // String host = "smtp.gmail.com";
+//             String port = txtPort.getText();
+//            
+//            Properties props = new Properties();
+//            props.put("mail.smtp.starttls.enable", "true");
+//            props.put("mail.smtp.host", host);
+//            props.put("mail.smtp.port", port);
+//            props.put("mail.smtp.auth", "true");
+//            Session mailSession = Session.getDefaultInstance(props, null);
+//            Transport transport=mailSession.getTransport("smtp");
+//            transport.connect(host, senderEmail, password);
+
+                ConnectGmail();
+
             JOptionPane.showMessageDialog(null,"Email configuration is Successful..!! ");
              
          } catch (Exception ex) {

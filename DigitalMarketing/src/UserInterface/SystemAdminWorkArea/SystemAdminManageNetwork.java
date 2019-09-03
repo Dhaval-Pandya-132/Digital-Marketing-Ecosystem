@@ -154,17 +154,17 @@ public class SystemAdminManageNetwork extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 110, 40));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 110, 40));
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSearchActionPerformed(evt);
             }
         });
-        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 190, -1));
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 190, -1));
 
         jLabel3.setText("Search Keyword: ");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 32));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 110, 32));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered

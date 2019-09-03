@@ -46,12 +46,12 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
     }
 
     public void populatestatusComboBox(){
-        ddlstatus.removeAllItems();
-        for(WorkRequest.Workstatus  status:WorkRequest.Workstatus.values())
-        {
-            ddlstatus.addItem(status);
-        }
-       
+//        ddlstatus.removeAllItems();
+//        for(WorkRequest.Workstatus  status:WorkRequest.Workstatus.values())
+//        {
+//            ddlstatus.addItem(status);
+//        }
+//       
     }  
 
      public void populateRequestTable(String text){
@@ -66,8 +66,13 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
             row[3] = request.getDuedate();
          //   String result = ((productDetailWorkRequest) request).getTestResult();
            // row[3] = result == null ? "Waiting" : result;
-           if(request.getAssignto() == account.getEmployee() && (request.getStatus().equals("In Process Product Analyst") || request.getStatus().equals("Task Created")||request.toString().contains(text) ||  request.getStatus().toString().contains(text) || request.getAssignto().toString().contains(text) || text=="")) 
-                {model.addRow(row);}
+           if(request.getAssignto() == account.getEmployee() && (request.getStatus().equals("In Process Product Analyst") || request.getStatus().equals("Task Created")))
+               {
+               if(request.toString().contains(text)|| request.getStatus().toString().contains(text) || request.getAssignto().toString().contains(text) || text=="")
+                {  
+                    model.addRow(row);
+                }
+               }
                 
         }
     }
@@ -84,8 +89,6 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbltasklist = new javax.swing.JTable();
         btnproceed = new javax.swing.JButton();
-        ddlstatus = new javax.swing.JComboBox();
-        jLabel8 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
@@ -127,12 +130,6 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
             }
         });
         add(btnproceed, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 150, -1));
-
-        ddlstatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(ddlstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 240, 30));
-
-        jLabel8.setText("Status:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 120, 30));
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png"))); // NOI18N
@@ -220,9 +217,7 @@ public class productAnalystrequestlistJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnproceed;
-    private javax.swing.JComboBox ddlstatus;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;

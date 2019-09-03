@@ -41,7 +41,7 @@ public class productManagerCreateTask extends javax.swing.JPanel {
    JPanel userProcessContainer;
    UserAccount account;
    //productManagerOrganization  organization;
-   Enterprise enterprise;
+    Enterprise enterprise;
     productDetailWorkRequest request ;
     Boolean isupdate=false;        
     public productManagerCreateTask(JPanel userProcessContainer,UserAccount account,Enterprise enterprise,WorkRequest request) throws ParseException {
@@ -232,7 +232,8 @@ public class productManagerCreateTask extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-      if(txtTaskID.getText().equals("")||txtdescription.getText().equals("")||txtduedate.getText().equals("")|| txttitle.getText().equals(""))
+       
+        if(txtTaskID.getText().equals("")||txtdescription.getText().equals("")||txtduedate.getText().equals("")|| txttitle.getText().equals(""))
         {
            JOptionPane.showMessageDialog(null, "One or more fields are empty..");
            return;
@@ -249,17 +250,20 @@ public class productManagerCreateTask extends javax.swing.JPanel {
         
         
        } catch (ParseException ex) {
-           JOptionPane.showMessageDialog(null, "Something went wrong..!!");
+           JOptionPane.showMessageDialog(null, "Please Insert Valid Due date!!");
 // Logger.getLogger(productManagerCreateTask.class.getName()).log(Level.SEVERE, null, ex);
        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     public void CreateTask() throws ParseException
     {
-       
+      // DateTimeComparator dateTimeComparator = DateTimeComparator.getDateOnlyInstance();
+
        java.util.Date dt= new SimpleDateFormat("dd/MM/yyyy").parse(txtduedate.getText());
         Date date = new Date();
        
+      // LocalDate  dt2=dt.toLocalDate();
+        
        if (dt.after(date) || dt.compareTo(date)==0)
        {
        

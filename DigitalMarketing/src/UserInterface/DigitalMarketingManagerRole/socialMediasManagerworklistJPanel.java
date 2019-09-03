@@ -12,6 +12,7 @@ import Business.Organization.marketAnalystOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import Business.WorkQueue.productDetailWorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -59,12 +60,12 @@ public class socialMediasManagerworklistJPanel extends javax.swing.JPanel {
         for (Organization o :enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (WorkRequest request :o.getWorkQueue().getWorkRequestList())
             {  
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = request;
             row[1] = request.getTaskID();
             row[2] = request.getPdw().getProductName();//request.
             row[3] = request.getStatus();         
-             
+            row[4]=request.getPra().getRisk();
          //   request.
           //  row[1] = ()request.;
           //  row[2] = o.;
@@ -92,6 +93,7 @@ public class socialMediasManagerworklistJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         ddlassignto = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -105,7 +107,7 @@ public class socialMediasManagerworklistJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Title", "TaskID", "ProductName", "Status"
+                "Title", "TaskID", "ProductName", "Status", "Risk Analysis %"
             }
         ));
         jScrollPane2.setViewportView(tbltasklist);
@@ -126,6 +128,26 @@ public class socialMediasManagerworklistJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Assign To:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 120, 30));
+
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png"))); // NOI18N
+        btnBack.setToolTipText("Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnBack.setBorderPainted(false);
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
+        });
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, 105, 76));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -156,7 +178,7 @@ public class socialMediasManagerworklistJPanel extends javax.swing.JPanel {
             WorkRequest request=(WorkRequest)tbltasklist.getValueAt(selectedRow,0);
             request.setAssignto((Employee)ddlassignto.getSelectedItem());
 
-            request.setStatus("Assign to Market Analyst");
+            request.setStatus("Assign to Digital Marketing Specialist");
 
             Organization org = null;
             for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -192,8 +214,28 @@ public class socialMediasManagerworklistJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        // TODO add your handling code here:
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px2.png")));
+        btnBack.setBorderPainted(false);
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        // TODO add your handling code here:
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png")));
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox ddlassignto;
     private javax.swing.JLabel jLabel9;

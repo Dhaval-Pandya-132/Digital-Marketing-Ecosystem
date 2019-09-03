@@ -7,7 +7,10 @@ package Business.WorkQueue;
 
 import Business.Employee.Employee;
 import Business.UserAccount.UserAccount;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -29,7 +32,29 @@ public abstract class WorkRequest {
     private Employee  Assignto;
     private productDetailWorkRequest pdw; 
     private productRiskAnalysis pra;
+    private List<TwitterData> td;
+    private List<EmailSendData> esd;
 
+    public List<EmailSendData> getEsd() {
+        return esd;
+    }
+
+    public void setEsd(List<EmailSendData> esd) {
+        this.esd = esd;
+    }
+
+
+    public List<TwitterData> getTd() {
+        return td;
+    }
+
+    public void setTd(List<TwitterData> td) {
+        this.td = td;
+    }
+
+    
+    
+    
     public productRiskAnalysis getPra() {
         return pra;
     }
@@ -136,6 +161,9 @@ public abstract class WorkRequest {
         requestDate = new Date();
         UUID uuid = UUID.randomUUID();
         this.TaskID = uuid.toString();
+        this.td=new ArrayList<>();
+        this.pra=new productRiskAnalysis();
+        this.esd=new ArrayList<>();
      //   this.pdw=new productDetailWorkRequest();
       //  this.pra=new  productRiskAnalysis();
         

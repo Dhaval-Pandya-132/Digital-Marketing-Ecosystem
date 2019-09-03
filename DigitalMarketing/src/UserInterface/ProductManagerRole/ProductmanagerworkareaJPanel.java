@@ -96,7 +96,7 @@ public class ProductmanagerworkareaJPanel extends javax.swing.JPanel {
         btnDashboard.setBackground(new java.awt.Color(61, 99, 210));
         btnDashboard.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnDashboard.setForeground(new java.awt.Color(255, 255, 255));
-        btnDashboard.setText("Dashboard");
+        btnDashboard.setText("Analysis");
         btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDashboardActionPerformed(evt);

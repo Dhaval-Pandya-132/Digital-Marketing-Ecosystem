@@ -24,7 +24,7 @@ public class productRiskAnalysis {
     int firstmover ;
     int usp ;
     int Finanacecrunch ;
-    int Risk;
+    int Risk=0;
     String productDemandcomment ;
     String Marketreachcomment ;
     String InnovativeAspectcomment ;
@@ -250,7 +250,7 @@ public class productRiskAnalysis {
                 +productreach 
                 +firstmover 
                 +usp 
-            +Finanacecrunch )/11)*100; 
+            +Finanacecrunch )/11); 
     
     }
     

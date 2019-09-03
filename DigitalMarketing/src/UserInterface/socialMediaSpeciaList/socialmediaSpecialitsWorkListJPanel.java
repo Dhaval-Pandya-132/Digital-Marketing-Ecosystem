@@ -62,12 +62,14 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
                     Object[] row = new Object[4];
                     row[0] = request;
                     row[1] = request.getTitle();
+                    row[2] = request.getDuedate();
+                    row[3] = request.getPra()== null? 0 :request.getPra().getRisk();
 
           //  row[1] = ()request.;
           //  row[2] = o.;
           //  row[3] = request.getDuedate();
                 
-             if(request.getAssignto() == account.getEmployee())   
+             if(request.getAssignto() == account.getEmployee() && !request.getStatus().equals("Completed By Digital Marketing"))   
                    {
                        model.addRow(row);
                    }
@@ -86,9 +88,11 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbltasklist = new javax.swing.JTable();
-        btnManageTask = new javax.swing.JButton();
         btnManageTask1 = new javax.swing.JButton();
         btnManageTask2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnManageTask3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,23 +102,12 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "TaskID", "TaskName"
+                "TaskID", "TaskName", "Due Date", "Risk Analysis %"
             }
         ));
         jScrollPane1.setViewportView(tbltasklist);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 220, 570, 303));
-
-        btnManageTask.setBackground(new java.awt.Color(61, 99, 210));
-        btnManageTask.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnManageTask.setForeground(new java.awt.Color(255, 255, 255));
-        btnManageTask.setText("Send SMS");
-        btnManageTask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageTaskActionPerformed(evt);
-            }
-        });
-        add(btnManageTask, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, 210, 60));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 220, 590, 303));
 
         btnManageTask1.setBackground(new java.awt.Color(61, 99, 210));
         btnManageTask1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -136,17 +129,43 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
                 btnManageTask2ActionPerformed(evt);
             }
         });
-        add(btnManageTask2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, 210, 60));
+        add(btnManageTask2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 310, 210, 60));
+
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png"))); // NOI18N
+        btnBack.setToolTipText("Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnBack.setBorderPainted(false);
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
+        });
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 105, 76));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Social Media Specialist Tasklist");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 390, -1));
+
+        btnManageTask3.setBackground(new java.awt.Color(61, 99, 210));
+        btnManageTask3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnManageTask3.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageTask3.setText("Complete Task ");
+        btnManageTask3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageTask3ActionPerformed(evt);
+            }
+        });
+        add(btnManageTask3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, 210, 60));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnManageTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTaskActionPerformed
-        // TODO add your handling code here:
-
-//        socialMediasManagerworklistJPanel smn=new socialMediasManagerworklistJPanel(userProcessContainer,account,enterprise);
-//        CardLayout cl=(CardLayout)userProcessContainer.getLayout();
-//        userProcessContainer.add("socialMediasManagerworklistJPanel",smn);
-//        cl.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageTaskActionPerformed
 
     private void btnManageTask1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTask1ActionPerformed
         // TODO add your handling code here:
@@ -160,7 +179,7 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
             en.setStatus("In Process Digital Marketing Team");
             TwitterjPanel smn;
              try {
-                 smn = new TwitterjPanel(userProcessContainer,account,en,enterprise);
+                 smn = new TwitterjPanel(userProcessContainer,account,en,enterprise,business);
                   CardLayout cl=(CardLayout)userProcessContainer.getLayout();
                userProcessContainer.add("TwitterjPanel",smn);
              cl.next(userProcessContainer);
@@ -189,7 +208,7 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
          
                try {
                       SendEmail  smn;
-                   smn = new SendEmail(userProcessContainer,account,en,enterprise);
+                   smn = new SendEmail(userProcessContainer,account,en,enterprise,business);
                      CardLayout cl=(CardLayout)userProcessContainer.getLayout();
                userProcessContainer.add("SendEmail",smn);
              cl.next(userProcessContainer);
@@ -210,11 +229,55 @@ public class socialmediaSpecialitsWorkListJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnManageTask2ActionPerformed
 
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        // TODO add your handling code here:
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px2.png")));
+        btnBack.setBorderPainted(false);
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        // TODO add your handling code here:
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png")));
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnManageTask3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTask3ActionPerformed
+        // TODO add your handling code here:
+        
+          int selectedRow=tbltasklist.getSelectedRow();
+        if (selectedRow>=0)
+        {
+            
+            WorkRequest en=(WorkRequest)tbltasklist.getValueAt(selectedRow,0);
+            en.setStatus("Completed By Digital Marketing");
+            populateRequestTable();
+            JOptionPane.showMessageDialog(null, "Task Completed Scucessfully");
+          
+           // resetTextfield();
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases select Row ");
+        }
+      
+        
+    }//GEN-LAST:event_btnManageTask3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageTask;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnManageTask1;
     private javax.swing.JButton btnManageTask2;
+    private javax.swing.JButton btnManageTask3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbltasklist;
     // End of variables declaration//GEN-END:variables

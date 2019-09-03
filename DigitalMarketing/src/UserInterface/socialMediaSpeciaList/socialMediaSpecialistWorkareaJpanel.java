@@ -40,7 +40,7 @@ public socialMediaSpecialistWorkareaJpanel(JPanel userProcessContainer,UserAccou
         this.account=account;
         this.organization=organization;
         this.enterprise=enterprise;
-
+        this.business=business;
        
       if(this.enterprise.getProfilePhoto() !=null)
       {

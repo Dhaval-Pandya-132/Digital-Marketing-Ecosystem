@@ -12,6 +12,7 @@ import Business.Role.marketingManagerRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.productDetailWorkRequest;
 import Business.WorkQueue.productRiskAnalysis;
+import java.awt.CardLayout;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -104,6 +105,7 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
         txtExpireddate = new javax.swing.JFormattedTextField();
         txtfeatures = new javax.swing.JTextField();
         txtlastrevenue = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -179,16 +181,38 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
         add(txtExpireddate, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 240, 30));
         add(txtfeatures, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 276, 240, 30));
         add(txtlastrevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 240, 30));
+
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png"))); // NOI18N
+        btnBack.setToolTipText("Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnBack.setBorderPainted(false);
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
+        });
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 105, 76));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitProductDetailsActionPerformed
         // TODO add your handling code here:
         //Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-          if(txtName.getText().equals("")||txtdurability.getText().equals("")||txtmarket.getText().equals("")||txtExpireddate.getText().equals("")||txtfeatures.getText().equals("")||txtfinalremark.getText().equals("")||txtlastrevenue.getText().equals("")||txtmanufecturedate.getText().equals("")||txtretailprice.getText().equals(""))
+        
+         if(txtName.getText().equals("")||txtdurability.getText().equals("")||txtmarket.getText().equals("")||txtExpireddate.getText().equals("")||txtfeatures.getText().equals("")||txtfinalremark.getText().equals("")||txtlastrevenue.getText().equals("")||txtmanufecturedate.getText().equals("")||txtretailprice.getText().equals(""))
         {
            JOptionPane.showMessageDialog(null,"One or more fields are empty!!"); 
            return;
         }
+        
         if(! CheckNumber("Retail Price Respirate", txtretailprice.getText()) 
            || !CheckNumber("Last Revenue", txtlastrevenue.getText())
            )
@@ -199,7 +223,7 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
             {
             try {
                 saveProductDetails();
-                JOptionPane.showMessageDialog(null,"Product detail saved successfully..!!");
+                JOptionPane.showMessageDialog(null,"Product detail saved successfully and Task assign to Market Analysis Enterprise..!!");
             } catch (ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Something went wrong while saving data ..!!", "", JOptionPane.WARNING_MESSAGE);
                     return ;
@@ -224,7 +248,7 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
         
 //  jfc.getSelectedFile().getName()
 
-        while (showOpenDialog==JFileChooser.APPROVE_OPTION && jfc.getSelectedFile().getName() != null) {
+        while (showOpenDialog==JFileChooser.APPROVE_OPTION && jfc.getSelectedFile().getName() != null && i>=0) {
             isCorrect =false;
             FileName=jfc.getSelectedFile().getName();
 
@@ -346,8 +370,28 @@ public class ProductAnalystProductDetailsJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtExpireddateActionPerformed
 
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        // TODO add your handling code here:
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px2.png")));
+        btnBack.setBorderPainted(false);
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        // TODO add your handling code here:
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Double Left_100px.png")));
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSelectphoto;
     private javax.swing.JButton btnSubmitProductDetails;
     private javax.swing.JLabel jLabel1;
