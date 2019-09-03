@@ -139,31 +139,16 @@ public class TwitterjPanel extends javax.swing.JPanel {
               
                   if  (E.getConsumerkey() !="" ||E.getConsumerSecretkey() !="" ||E.getAccessToken() !="" ||E.getAccessTokenSecret() !="" )
                   {
-                    consumerKeyStr = E.getConsumerkey();//"zpGL6kU6RKXoHE7MYkX1hsS5u";
+                    consumerKeyStr = E.getConsumerkey();;
 
             //Your Twitter App's Consumer Secret
-                    consumerSecretStr = E.getConsumerSecretkey();//"KtubqX7OqHxZm79F9CeeeU9z7EXCaKOYtAVFIrflsgcr1wSFUL";
+                    consumerSecretStr = E.getConsumerSecretkey();;
 
                    //Your Twitter Access Token
-                    accessTokenStr = E.getAccessToken();//"1114998612692545550-TRf6N9YGy2SrD8cE7dlriQSCLjErCL";
+                    accessTokenStr = E.getAccessToken();
 
                    //Your Twitter Access Token Secret
-                    accessTokenSecretStr = E.getAccessTokenSecret();//"5687xOyIqQzw3CHes45fvKIOMEgACoXmjcRWZLGSnqa1m";
-                  }
-                  else
-                  {
-                        consumerKeyStr = "zpGL6kU6RKXoHE7MYkX1hsS5u";
-
-            //Your Twitter App's Consumer Secret
-                    consumerSecretStr = "KtubqX7OqHxZm79F9CeeeU9z7EXCaKOYtAVFIrflsgcr1wSFUL";
-
-                   //Your Twitter Access Token
-                    accessTokenStr = "1114998612692545550-TRf6N9YGy2SrD8cE7dlriQSCLjErCL";
-
-                   //Your Twitter Access Token Secret
-                    accessTokenSecretStr = "5687xOyIqQzw3CHes45fvKIOMEgACoXmjcRWZLGSnqa1m";
-                  
-                  
+                    accessTokenSecretStr = E.getAccessTokenSecret();
                   }
                 }
             }
